@@ -1,5 +1,6 @@
 //make sure to 'npm install express', 'npm install body-parser'
-//'npm install mysql', 'npm install nodemon'
+//'npm install mysql', 'npm install nodemon', 'npm install cors',
+//np install axios
 
 const express = require("express")
 const app = express()
