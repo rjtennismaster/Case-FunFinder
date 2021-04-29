@@ -5,7 +5,7 @@ function Navbar() {
     <div>
       <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
         <a class="navbar-brand" href="#">
-          Case Fun-Finder
+          Case Fun-Finders
         </a>
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav mr-auto">
