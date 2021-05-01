@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+
+.position-right {
+  position: fixed;
+  right: 0;
+  padding-right: 20px;
+}
+
+.UserFunFolderHeader {
+  position: relative;
+  padding-right: 20px;
+  border: #282c34;
+  margin-right: auto;
+}

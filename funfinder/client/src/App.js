@@ -3,6 +3,7 @@ import FunFolder from "./FunFolder";
 import HomePage from "./HomePage";
 import "bootstrap/dist/css/bootstrap.css";
 import { Route } from "react-router-dom";
+import React, { Component } from "react";
 
 function App() {
   return (
