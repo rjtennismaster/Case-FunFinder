@@ -4,12 +4,43 @@
 
 const express = require("express")
 const app = express()
+const mysql = require('mysql')
+const cors = require('cors')
+const bodyParser = require('body-parser')
 
-app.get("/", (req, res) => {
-    res.send("hello world")
+app.use(express.json())
+app.use(bodyParser.urlencoded({extended: true}))
+app.use(cors())
+
+const database = mysql.createConnection({
+    user: "root",
+    host: "localhost",
+    password: "Exexxexex2*",
+    database: "case_funfinder"
 })
 
 
-app.listen(3001, () => {
-    console.log("running on port 3001")
+app.post('signup', (req, res) => {
+    const username = req.body.username
+    const password = req.body.password
+    const firstName = req.body.firstName
+    const lastName = req.body.lastName
+
+    database.query(
+        "INSERT INTO users (cwru_id, password, first_name, last_name) VALUES (?,?,?,?)",
+        [username, password, firstName, lastName],
+        (err, result) => {
+            if (err) {
+                res.send({message: "Signup Failed"})
+                console.log(err)
+            } else {
+                res.send({message: "You're All Signed Up!"})
+            }
+        }
+    )
+})
+
+
+app.listen(3003, () => {
+    console.log("running on port 3003")
 })
