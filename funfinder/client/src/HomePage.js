@@ -1,14 +1,17 @@
-import React, { Component } from "react";
+import React from "react";
 import NavBar from "./components/Navbar";
 import HomeBody from "./components/HomeBody";
 
-export default class HomePage extends Component {
-  render() {
+function HomePage( {username, setUsername, password, 
+                    setPassword, loginStatus, setLoginStatus,
+                    showWelcomeModal, setShowWelcomeModal }) {
+                      
     return (
       <div>
         <NavBar />
         <HomeBody />
       </div>
-    );
-  }
+    )
 }
+
+export default HomePage

@@ -5,21 +5,26 @@ function Navbar() {
   return (
     <div>
       <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-        <a class="navbar-brand" href="#">
+        <Link className = "navbar-brand" to = "/">
           Case Fun-Finder
-        </a>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a href="/" class="nav-link active">
+        </Link>
+        <div className = "collapse navbar-collapse" id="navbarCollapse">
+          <ul className ="navbar-nav mr-auto">
+            <Link className = "nav-link active" to = "/">
+            <li className = "nav-item active">
                 Home
-              </a>
             </li>
-            <li class="nav-item active">
-              <a href="/fun" class="nav-link acive">
-                Folder
-              </a>
+            </Link>
+            <Link className = "nav-link active" to = "/search">
+            <li className = "nav-item active">
+                Search
             </li>
+            </Link>
+            <Link className = "nav-link active" to = "/funfolder">
+            <li className = "nav-item active">
+                Fun Folder
+            </li>
+            </Link>
           </ul>
         </div>
       </nav>

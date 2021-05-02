@@ -1,12 +1,12 @@
 import React from "react";
 import DropDown from "./DropDown";
 
-function FunFolderBody () {
+function SearchBody () {
 
     return (
       <div role="main" className="container">
         <div class="jumbotron">
-          <h1>See What's Happenin Near You!</h1>
+          <h1>See What's Happening Near You!</h1>
           <p class="lead">Search for fun things on campus</p>
           <DropDown />
         </div>
@@ -14,4 +14,4 @@ function FunFolderBody () {
     )
 }
 
-export default FunFolderBody
+export default SearchBody
