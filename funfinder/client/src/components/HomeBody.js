@@ -1,7 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 
-export default class HomeBody extends Component {
-  render() {
+function HomeBody() {
     return (
       <div role="main" class="container">
         <div class="jumbotron">
@@ -12,6 +11,7 @@ export default class HomeBody extends Component {
           </a>
         </div>
       </div>
-    );
-  }
+    )
 }
+
+export default HomeBody

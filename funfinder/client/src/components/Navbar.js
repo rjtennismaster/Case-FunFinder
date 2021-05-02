@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom'
 
 function Navbar() {
   return (
@@ -19,16 +20,12 @@ function Navbar() {
                 Folder
               </a>
             </li>
-            <li class="nav-item active position-right">
-              <a href="#" class="nav-link active">
-                Logout
-              </a>
-            </li>
           </ul>
         </div>
       </nav>
+      <button className = "logOutButton">Log Out</button>
     </div>
-  );
+  )
 }
 
-export default Navbar;
+export default Navbar

@@ -49,3 +49,9 @@
   border: #282c34;
   margin-right: auto;
 }
+
+.logOutButton {
+  position: absolute;
+  right: 15px;
+  top: 12px;
+}

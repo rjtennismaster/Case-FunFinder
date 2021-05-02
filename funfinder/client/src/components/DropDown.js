@@ -1,8 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import { Form } from "react-bootstrap";
 
-export default class DropDown extends Component {
-  render() {
+function DropDown() {
     return (
       <div>
         <Form>
@@ -30,6 +29,7 @@ export default class DropDown extends Component {
           </button>
         </Form>
       </div>
-    );
-  }
+    )
 }
+
+export default DropDown
