@@ -15,7 +15,7 @@ function App() {
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
   const [loginStatus, setLoginStatus] = useState("")
-  const [showWelcomeModal, setShowWelcomeModal] = useState("")
+  const [showWelcomeModal, setShowWelcomeModal] = useState(true)
 
   return (
     <Router>

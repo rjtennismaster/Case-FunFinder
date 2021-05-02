@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import NavBar from "./components/Navbar"
 import HomeBody from "./components/HomeBody"
 import WelcomeModal from "./components/WelcomeModal"
