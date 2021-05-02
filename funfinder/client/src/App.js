@@ -12,6 +12,8 @@ function App() {
 
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
   const [loginStatus, setLoginStatus] = useState("")
   const [showWelcomeModal, setShowWelcomeModal] = useState("")
 
@@ -25,6 +27,10 @@ function App() {
                                   {...props}
                                   username = {username}
                                   password = {password}
+                                  firstName = {firstName}
+                                  setFirstName = {setFirstName}
+                                  setLastName = {setLastName}
+                                  lastName = {lastName}
                                   setUsername = {setUsername}
                                   setPassword = {setPassword}
                                   loginStatus = {loginStatus}
@@ -39,9 +45,12 @@ function App() {
                                   {...props}
                                   username = {username}
                                   password = {password}
+                                  setFirstName = {setFirstName}
+                                  setLastName = {setLastName}
+                                  firstName = {firstName}
+                                  lastName = {lastName}
                                   setUsername = {setUsername}
                                   setPassword = {setPassword}
-                                  loginStatus = {loginStatus}
                                   setLoginStatus = {setLoginStatus}
                                   showWelcomeModal = {showWelcomeModal}
                                   setShowWelcomeModal = {setShowWelcomeModal}
@@ -53,9 +62,12 @@ function App() {
                                   {...props}
                                   username = {username}
                                   password = {password}
+                                  firstName = {firstName}
+                                  setFirstName = {setFirstName}
+                                  setLastName = {setLastName}
+                                  lastName = {lastName}
                                   setUsername = {setUsername}
                                   setPassword = {setPassword}
-                                  loginStatus = {loginStatus}
                                   setLoginStatus = {setLoginStatus}
                                   showWelcomeModal = {showWelcomeModal}
                                   setShowWelcomeModal = {setShowWelcomeModal}

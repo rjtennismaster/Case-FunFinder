@@ -1,11 +1,15 @@
 import React from "react";
 import { Link } from 'react-router-dom'
 
-function Navbar( {setUsername, setPassword, setShowWelcomeModal, setLoginStatus} ) {
+function Navbar( {setUsername, setPassword, setShowWelcomeModal, 
+                  setLoginStatus, firstName, lastName,
+                  username, setFirstName, setLastName} ) {
 
   const logOut = () => {
     setUsername("")
     setPassword("")
+    setFirstName("")
+    setLastName("")
     setShowWelcomeModal(true)
     setLoginStatus("You are Logged Out")
   }
@@ -36,6 +40,7 @@ function Navbar( {setUsername, setPassword, setShowWelcomeModal, setLoginStatus}
           </ul>
         </div>
       </nav>
+      <h5 className = "loggedInMessage">Logged In: {firstName} {lastName} ({username})</h5>
       <button className = "logOutButton" onClick = {logOut}>Log Out</button>
     </div>
   )
