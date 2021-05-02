@@ -1,6 +1,6 @@
 import React from 'react'
 import Modal from 'react-modal'
-import '../css/WelcomeModal.css'
+import './WelcomeModal.css'
 
 
 Modal.setAppElement('#root')

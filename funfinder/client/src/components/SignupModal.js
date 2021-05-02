@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Modal from 'react-modal'
-import '../css/SignupModal.css'
+import './SignupModal.css'
 import Axios from 'axios'
 
 
@@ -61,6 +61,24 @@ function SignupModal({ showSignupModal, setShowLoginModal, setShowSignupModal,
                 onChange = {(event) => {
                     setPassword(event.target.value)
                 }}
+            />
+            <input
+                id = "input12" 
+                type = "text"
+                placeholder = "First Name..."
+                value = {firstName}
+                onChange = {(event) => {
+                    setFirstName(event.target.value)
+                }} 
+            />
+            <input
+                id = "input13" 
+                type = "text"
+                placeholder = "Last Name..."
+                value = {lastName}
+                onChange = {(event) => {
+                    setLastName(event.target.value)
+                }} 
             />
             <button id = "button5" onClick = {() => {signUp()}}>Sign Up</button>
             <button id = "button6" onClick = {() => {

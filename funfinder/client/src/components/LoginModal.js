@@ -1,6 +1,6 @@
 import React from 'react'
 import Modal from 'react-modal'
-import '../css/LoginModal.css'
+import './LoginModal.css'
 import Axios from 'axios'
 
 

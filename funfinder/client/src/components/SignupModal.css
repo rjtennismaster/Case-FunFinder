@@ -60,6 +60,24 @@
     bottom: 200px;
 }
 
+#input12 {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    bottom: 200px;
+    width: 250px;
+    height: 40px;
+}
+
+#input13 {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    bottom: 200px;
+    width: 250px;
+    height: 40px;
+}
+
 .signupCenterer {
     display: flex;
     justify-content: center;
