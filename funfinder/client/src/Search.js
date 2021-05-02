@@ -5,9 +5,15 @@ import NavBar from "./components/Navbar"
 function Search( {username, setUsername, password, 
   setPassword, loginStatus, setLoginStatus,
   showWelcomeModal, setShowWelcomeModal } ) {
+
     return (
       <div>
-        <NavBar />
+        <NavBar
+          setUsername = {setUsername}
+          setPassword = {setPassword}
+          setShowWelcomeModal = {setShowWelcomeModal}
+          setLoginStatus = {setLoginStatus} 
+        />
         <SearchBody />
       </div>
     )

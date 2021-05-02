@@ -1,7 +1,15 @@
 import React from "react";
 import { Link } from 'react-router-dom'
 
-function Navbar() {
+function Navbar( {setUsername, setPassword, setShowWelcomeModal, setLoginStatus} ) {
+
+  const logOut = () => {
+    setUsername("")
+    setPassword("")
+    setShowWelcomeModal(true)
+    setLoginStatus("You are Logged Out")
+  }
+
   return (
     <div>
       <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
@@ -28,7 +36,7 @@ function Navbar() {
           </ul>
         </div>
       </nav>
-      <button className = "logOutButton">Log Out</button>
+      <button className = "logOutButton" onClick = {logOut}>Log Out</button>
     </div>
   )
 }

@@ -4,10 +4,15 @@ import NavBar from "./Navbar"
 function FunFolder( {username, setUsername, password, 
     setPassword, loginStatus, setLoginStatus,
     showWelcomeModal, setShowWelcomeModal } ) {
-        
+
     return (
       <div>
-        <NavBar />
+        <NavBar
+          setUsername = {setUsername}
+          setPassword = {setPassword}
+          setShowWelcomeModal = {setShowWelcomeModal}
+          setLoginStatus = {setLoginStatus} 
+        />
       </div>
     )
 }
