@@ -19,7 +19,6 @@ const database = mysql.createConnection({
     database: "case_funfinder"
 })
 
-
 app.post('signup', (req, res) => {
     const username = req.body.username
     const password = req.body.password
