@@ -25,7 +25,7 @@ function LoginModal({ username, password, setUsername,
         }
         
         const logIn = () => {
-            Axios.post("http://localhost:3001/login", {
+            Axios.post("http://localhost:3003/login", {
             username: username,
             password: password
             }).then((response) => {

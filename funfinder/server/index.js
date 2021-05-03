@@ -19,7 +19,7 @@ const database = mysql.createConnection({
     database: "case_funfinder"
 })
 
-app.post('signup', (req, res) => {
+app.post('/signup', (req, res) => {
     const username = req.body.username
     const password = req.body.password
     const firstName = req.body.firstName
@@ -34,6 +34,26 @@ app.post('signup', (req, res) => {
                 console.log(err)
             } else {
                 res.send({message: "You're All Signed Up!"})
+            }
+        }
+    )
+})
+
+app.post('/login', (req, res) => {
+    const username = req.body.username
+    const password = req.body.password
+
+    database.query(
+        "SELECT * FROM users WHERE cwru_id = ? AND password = ?",
+        [username, password], 
+        (err, result) => {
+            if (err) {
+            res.send({err: err})
+            }
+            if (result.length > 0) {
+                res.send(result)
+            } else {
+                res.send({message: "You entered the wrong username/password combination!"})
             }
         }
     )

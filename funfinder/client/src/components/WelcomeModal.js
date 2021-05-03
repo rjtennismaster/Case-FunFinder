@@ -27,7 +27,7 @@ function WelcomeModal({ showWelcomeModal, setShowWelcomeModal, setShowLoginModal
                 shouldCloseOnOverlayClick = {false}
                 style = {customStyles}>
             <div id = "welcomeSign">
-                <h1>Welcome to MarketView!</h1>
+                <h1>Welcome to Case Fun-Finder!</h1>
             </div>
             <button id = {"button1"} onClick = {() => {
                     setShowWelcomeModal(false)

@@ -27,7 +27,7 @@ function SignupModal({ showSignupModal, setShowLoginModal, setShowSignupModal,
     }
 
     const signUp = () => {
-        Axios.post("http://localhost:3001/signup", {
+        Axios.post("http://localhost:3003/signup", {
             username: username,
             password: password,
             firstName: firstName,

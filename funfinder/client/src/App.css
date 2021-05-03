@@ -55,3 +55,10 @@
   right: 15px;
   top: 12px;
 }
+
+.loggedInMessage {
+  position: absolute;
+  top: 16px;
+  color: white;
+  left: 42%;
+}
