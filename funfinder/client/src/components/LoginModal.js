@@ -63,7 +63,7 @@ function LoginModal({ username, password, setUsername,
                         setPassword(event.target.value)
                     }}
                 />
-                <button id = "button3" onClick = {() => {logIn()}}>Log In</button>
+                <button id = "button3" onClick = {logIn}>Log In</button>
                 <button id = "button4" onClick = {() => {
                         setShowLoginModal(false)
                         setShowSignupModal(true)
