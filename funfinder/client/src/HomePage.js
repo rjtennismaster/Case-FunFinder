@@ -44,14 +44,14 @@ function HomePage( {username, setUsername, password,
           lastName = {lastName}
           setUsername = {setUsername}
           setPassword = {setPassword}
-          firstName = {firstName}
-          lastName = {lastName}
           setFirstName = {setFirstName}
           setLastName = {setLastName}
         />
         <LoginModal
           username = {username}
           password = {password}
+          setFirstName = {setFirstName}
+          setLastName = {setLastName}
           setUsername = {setUsername}
           setPassword = {setPassword}
           loginStatus = {loginStatus}

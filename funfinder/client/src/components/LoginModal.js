@@ -6,7 +6,7 @@ import Axios from 'axios'
 
 Modal.setAppElement('#root')
 
-function LoginModal({ username, password, setUsername,
+function LoginModal({ username, password, setUsername, setFirstName, setLastName,
                       setPassword, loginStatus, setLoginStatus, 
                       showLoginModal, setShowLoginModal, setShowSignupModal }) {
     
@@ -35,6 +35,8 @@ function LoginModal({ username, password, setUsername,
             } else {
                 setShowLoginModal(false)
                 setLoginStatus("")
+                setFirstName(response.data[0].first_name)
+                setLastName(response.data[0].last_name)
             }
             })
         }

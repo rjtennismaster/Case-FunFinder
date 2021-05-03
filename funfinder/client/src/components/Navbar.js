@@ -40,7 +40,7 @@ function Navbar( {setUsername, setPassword, setShowWelcomeModal,
           </ul>
         </div>
       </nav>
-      <h5 className = "loggedInMessage">Logged In: {firstName} {lastName} ({username})</h5>
+      <h5 className = "loggedInMessage">Logged In: {`${firstName} ${lastName}`} ({username})</h5>
       <Link to = "/">
       <button className = "logOutButton" onClick = {logOut}>Log Out</button>
       </Link>
