@@ -58,6 +58,23 @@ function FunFolder( {username, setUsername, password,
       })
     }
 
+    const addToFavorites = () => {
+      Axios.post("http://localhost:3003/addToFavorites/", {
+        username: username,
+        fun_id: itemToShow.fun_id,
+        name: itemToShow.attraction_name
+      }).then(() => {
+        setFavoritesItems([
+          ...favoritesItems,
+          {
+            fun_id: itemToShow.fun_id,
+            cwru_id: username,
+            attraction_name: itemToShow.attraction_name
+          }
+        ])
+      })
+    }
+
     return (
       <div>
         <NavBar
@@ -88,6 +105,20 @@ function FunFolder( {username, setUsername, password,
               })}
             </div>
           </div>
+          <div className = "favoritesContainer">
+            <div className = "favoritesTitle">
+              <h1>Favorites</h1>
+            </div>
+            <div className = "favoritesContent">
+            {favoritesItems.map((item, index) => {
+                return (
+                <button key = {index}>
+                  <h6>{item.attraction_name}</h6>
+                </button>
+                )
+              })}
+            </div>
+          </div>
         </div>
         <Modal 
           className = "funModal"
@@ -112,6 +143,9 @@ function FunFolder( {username, setUsername, password,
           </button>
           <button onClick = {removeAttraction}>
             Remove from Fun Folder
+          </button>
+          <button onClick = {addToFavorites}>
+            Add to Favorites
           </button>
         </Modal>
       </div>
