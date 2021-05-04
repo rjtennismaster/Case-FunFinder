@@ -10,6 +10,7 @@ function FunFolder( {username, setUsername, password,
     const [showAttractionModal, setShowAttractionModal] = useState(false)
     const [funFolderItems, setFunFolderItems] = useState([])
     const [favoritesItems, setFavoritesItems] = useState([])
+    const [itemToShow, setItemToShow] = useState([])
 
     useEffect(() => {
       Axios.get("http://localhost:3003/getFunFolder", {
@@ -34,6 +35,16 @@ function FunFolder( {username, setUsername, password,
     })
 
 
+    const getAttractionInfo = (event) => {
+      Axios.get("http://localhost:3003/getAttractionInfo", {
+        params: {
+          funId: event.target.value
+        }
+      }).then((response) => {
+        setItemToShow(response.data[0])
+      })
+    }
+
     return (
       <div>
         <NavBar
@@ -54,10 +65,35 @@ function FunFolder( {username, setUsername, password,
               <h1>Fun Folder</h1>
             </div>
             <div className = "folderContent">
-
+              {funFolderItems.map((item, index) => {
+                <button key = {index} value = {item.fun_id} onClick = {(event) =>  {getAttractionInfo(event)
+                  setShowAttractionModal(true)}
+                }><h6>{item.attraction_name}</h6>
+                </button>
+              })}
             </div>
           </div>
         </div>
+        <Modal 
+          className = "funModal"
+          isOpen = {showAttractionModal}
+          fade ={false}
+        >
+          <div className = "modalResults">
+            <h1>{itemToShow.attraction_name}</h1>
+            <ul>
+              <li>Type: {itemToShow.attraction_type}</li>
+              <li>City: {itemToShow.city}</li>
+              <li>Street Address: {itemToShow.street_address}</li>
+              <li>Zip Code: {itemToShow.zip_code}</li>
+              <li>Opens at: {itemToShow.opening_hour}</li>
+              <li>Closes at: {itemToShow.closing_hour}</li>
+              <li>Do I need a mask? {itemToShow.mask_required}</li>
+              <li>Rating: {itemToShow.rating}</li>
+            </ul>
+          </div>
+          <button onClick = {setShowAttractionModal(false)}
+        </Modal>
       </div>
     )
 }
