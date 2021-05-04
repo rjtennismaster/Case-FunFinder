@@ -16,7 +16,7 @@ function Navbar( {setUsername, setPassword, setShowWelcomeModal,
 
   return (
     <div>
-      <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+      <nav className="navbar navbar-expand-md navbar-dark bg-dark mb-4">
         <Link className = "navbar-brand" to = "/">
           Case Fun-Finder
         </Link>

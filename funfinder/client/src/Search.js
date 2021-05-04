@@ -9,7 +9,7 @@ function Search( {username, setUsername, password,
   firstName, setFirstName, lastName, setLastName,
   setShowWelcomeModal } ) {
 
-    const[successfulAdd, setSuccessfulAdd] = useState("")
+    const [successfulAdd, setSuccessfulAdd] = useState("")
 
     //state for search parameters
     const [rCity, setRCity] = useState("")
@@ -25,7 +25,7 @@ function Search( {username, setUsername, password,
     const [rResultsGeneral, setRResultsGeneral] = useState([])
 
 
-    const getRestaurantsGeneral = (event) => {
+    const getRestaurantsGeneral = () => {
       Axios.get("http://localhost:3003/getRestaurantsGeneral", {
             params: {
                 city: rCity,
@@ -36,6 +36,7 @@ function Search( {username, setUsername, password,
             }
         }).then((response) => {
             setRResultsGeneral(response.data.map((restaurant) => {
+              console.log(response.data)
               return restaurant
             }))
         })
@@ -68,9 +69,11 @@ function Search( {username, setUsername, password,
           setLastName = {setLastName}
           setShowWelcomeModal = {setShowWelcomeModal}
         />
+        {/*
         <SearchBody />
+        */}
         <h1>Search Restaurants</h1>
-        <Form className = "restaurantSearchGeneral" onSubmit = {(event) => getRestaurantsGeneral(event)}>
+        <Form className = "container" onSubmit = {getRestaurantsGeneral}>
           <h3>General Restaurant Search:</h3>
           <span>Show me Restaurants in </span>
           <select value = {rCity} 
@@ -79,7 +82,7 @@ function Search( {username, setUsername, password,
           >
             <option value = "Cleveland">Cleveland</option>
           </select>
-          <span> that open before </span>
+          <span> that are open between the hours of </span>
           <select value = {rOpening}
                   onChange = {(event) => setROpening(event.target.value)}
                   name = "rgenoptime"
@@ -110,7 +113,7 @@ function Search( {username, setUsername, password,
             <option value = "2300">23:00</option>
             <option value = "2400">24:00</option>
           </select>
-          <span> and close after </span>
+          <span> and </span>
           <select value = {rClosing}
                   onChange = {(event) => setRClosing(event.target.value)}
                   name = "rgenclosetime"

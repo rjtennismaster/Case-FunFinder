@@ -59,6 +59,44 @@ app.post('/login', (req, res) => {
     )
 })
 
+app.post('/addToFunFolder', (req, res) => {
+    const cwruId = req.body.cwruId
+    const funId = req.body.funId
+    const name = req.body.name
+
+    database.query(
+        "INSERT INTO is_tracking (cwru_id, attraction_fun_id, attraction_name) VALUES (?, ?, ?)",
+        [cwruId, funId, name],
+        (err, result) => {
+            if (err) {
+                res.send({message: "You cannot add any more attractions to your fun folder."})
+                console.log(err)
+            } else {
+                res.send({message: "Restaurant Added to Fun Folder!"})
+            }
+        }
+    )
+})
+
+app.get('/getRestaurantsGeneral', (req, res) => {
+    const city = req.query.city
+    const openingHour = req.query.openingHour
+    const closingHour = req.query.closingHour
+    const maskRequired = req.query.maskRequired
+    const rating = req.query.rating
+
+    database.query(
+        "SELECT * FROM restaurants R NATURAL JOIN attractions A WHERE A.city = ? AND A.opening_hour >= ? AND A.closing_hour <= ? AND A.mask_required = ? AND A.rating >= ?",
+        [city, openingHour, closingHour, maskRequired, rating],
+        (err, result) => {
+            if (err) {
+                console.log(err)
+            } else {
+                res.send(result)
+            }
+        }
+    )
+})
 
 app.listen(3003, () => {
     console.log("running on port 3003")
