@@ -47,7 +47,8 @@ function FunFolder( {username, setUsername, password,
     }
 
     const removeAttraction = () => {
-      Axios.delete(`http://localhost:3003/removeAttraction/${username}/${itemToShow.fun_id}`)
+      const fun = itemToShow.fun_id
+      Axios.delete(`http://localhost:3003/removeAttraction/${username}/${fun}`)
       .then(() => {
         setFunFolderItems(
           funFolderItems.filter((item) => {
@@ -72,6 +73,18 @@ function FunFolder( {username, setUsername, password,
             attraction_name: itemToShow.attraction_name
           }
         ])
+      })
+    }
+
+    const removeFromFavorites = (event) => {
+      const funId = event.target.value
+      Axios.delete(`http://localhost:3003/removeFromFavorites/${username}/${funId}`)
+      .then(() => {
+        setFavoritesItems(
+          favoritesItems.filter((item) => {
+            return item.fun_id !== event.target.value
+          })
+        )
       })
     }
 
@@ -112,7 +125,10 @@ function FunFolder( {username, setUsername, password,
             <div className = "favoritesContent">
             {favoritesItems.map((item, index) => {
                 return (
-                <button key = {index}>
+                <button key = {index}
+                        value = {item.fun_id}
+                        onClick = {(event) => removeFromFavorites(event)}
+                        >
                   <h6>{item.attraction_name}</h6>
                 </button>
                 )

@@ -78,6 +78,25 @@ app.post('/addToFunFolder', (req, res) => {
     )
 })
 
+app.post('/addToFavorites', (req, res) => {
+    const cwruId = req.body.username
+    const funId = req.body.fun_id
+    const name = req.body.name
+
+    database.query(
+        "INSERT INTO is_favorite (fun_id, cwru_id, attraction_name) VALUES (?, ?, ?)",
+        [funId, cwruId, name],
+        (err, result) => {
+            if (err) {
+                res.send({message: "You cannot add any more attractions to your favorite."})
+                console.log(err)
+            } else {
+                res.send(result)
+            }
+        }
+    )
+})
+
 app.get('/getRestaurantsGeneral', (req, res) => {
     const city = req.query.city
     const openingHour = req.query.openingHour
@@ -130,6 +149,51 @@ app.get('/getFavorites', (req, res) => {
     )
 })
 
+app.get('/getAttractionInfo', (req, res) => {
+    const funId = req.query.funId
+
+    database.query(
+        "SELECT * FROM attractions WHERE fun_id = ?",
+        funId,
+        (err, result) => {
+            if (err) {
+                console.log(err)
+            } else {
+                res.send(result)
+            }
+        }
+    )
+})
+
+app.delete('/removeAttraction/:username/:fun', (req, res) => {
+    const username = req.params.username
+    const funId = req.params.fun
+
+    database.query("DELETE FROM is_tracking WHERE cwru_id = ? AND attraction_fun_id = ?",
+    [username, funId], (err, result) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.send(result)
+        }
+    }
+    )
+})
+
+app.delete('/removeFromFavorites/:username/:funId', (req, res) => {
+    const username = req.params.username
+    const funId = req.params.fun
+
+    database.query("DELETE FROM is_favorite WHERE cwru_id = ? AND fun_id = ?",
+    [username, funId], (err, result) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.send(result)
+        }
+    }
+    )
+})
 
 app.listen(3003, () => {
     console.log("running on port 3003")
