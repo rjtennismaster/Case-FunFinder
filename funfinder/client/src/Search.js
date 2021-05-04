@@ -1,8 +1,9 @@
 import React, { useState } from "react"
-import SearchBody from "./components/SearchBody"
 import NavBar from "./components/Navbar"
 import Axios from "axios"
 import { Form } from "react-bootstrap"
+
+
 
 function Search( {username, setUsername, password, 
   setPassword, setLoginStatus, 
@@ -25,7 +26,9 @@ function Search( {username, setUsername, password,
     const [rResultsGeneral, setRResultsGeneral] = useState([])
 
 
-    const getRestaurantsGeneral = () => {
+    const getRestaurantsGeneral = (event) => {
+      console.log("it's working at least")
+      event.preventDefault()
       Axios.get("http://localhost:3003/getRestaurantsGeneral", {
             params: {
                 city: rCity,
@@ -73,13 +76,14 @@ function Search( {username, setUsername, password,
         <SearchBody />
         */}
         <h1>Search Restaurants</h1>
-        <Form className = "container" onSubmit = {getRestaurantsGeneral}>
+        <Form className = "container" onSubmit = {(event) => getRestaurantsGeneral(event)}>
           <h3>General Restaurant Search:</h3>
           <span>Show me Restaurants in </span>
           <select value = {rCity} 
                   onChange = {(event) => setRCity(event.target.value)}
                   name = "rgencity"
           >
+            <option>Select a City</option>
             <option value = "Cleveland">Cleveland</option>
           </select>
           <span> that are open between the hours of </span>
@@ -87,6 +91,7 @@ function Search( {username, setUsername, password,
                   onChange = {(event) => setROpening(event.target.value)}
                   name = "rgenoptime"
           >
+            <option>Select an Opening Time</option>
             <option value = "0000">00:00</option>
             <option value = "0100">01:00</option>
             <option value = "0200">02:00</option>
@@ -118,6 +123,7 @@ function Search( {username, setUsername, password,
                   onChange = {(event) => setRClosing(event.target.value)}
                   name = "rgenclosetime"
           >
+            <option>Select a Closing Time</option>
             <option value = "0000">00:00</option>
             <option value = "0100">01:00</option>
             <option value = "0200">02:00</option>
@@ -149,6 +155,7 @@ function Search( {username, setUsername, password,
                   onChange = {(event) => setRMaskReq(event.target.value)}
                   name = "rgenmaskreq"
           >
+            <option>Select a Mask Requirement</option>
             <option value = "Y">Requires Mask</option>
             <option value = "N">Does not Require Mask</option>
           </select>
@@ -157,6 +164,7 @@ function Search( {username, setUsername, password,
                   onChange = {(event) => setRRating(event.target.value)}
                   name = "rgenrating"
           >
+            <option>Select a Rating</option>
             <option value = "1.0">1</option>
             <option value = "2.0">2</option>
             <option value = "3.0">3</option>
