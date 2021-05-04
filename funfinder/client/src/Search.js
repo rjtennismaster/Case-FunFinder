@@ -184,9 +184,8 @@ function Search( {username, setUsername, password,
                 key = {index}
                 data-funId = {restaurant.fun_id}
                 data-name = {restaurant.name}
-                onClick = {(event) => addToFunFolder(event)}
               >
-                <h3>{restaurant.rname}</h3>
+                <h4>{restaurant.rname}</h4>
                 <ul>
                   <li>Owner: {restaurant.owner}</li>
                   <li>Street Address: {restaurant.street_address}</li>
@@ -200,6 +199,7 @@ function Search( {username, setUsername, password,
                   <li>Do I Need to Wear a Mask? {restaurant.mask_required}</li>
                   <li>Rating Out of 5: {restaurant.rating}</li>
                 </ul>
+                <button onClick = {(event) => addToFunFolder(event)}></button>
                 <h6>{successfulAdd}</h6>
               </div>
             )

@@ -98,6 +98,39 @@ app.get('/getRestaurantsGeneral', (req, res) => {
     )
 })
 
+app.get('/getFunFolder', (req, res) => {
+    const username = req.query.username
+
+    database.query(
+        "SELECT * FROM is_tracking WHERE cwru_id = ?",
+        username,
+        (err, result) => {
+            if (err) {
+                console.log(err)
+            } else {
+                res.send(result)
+            }
+        }
+    )
+})
+
+app.get('/getFavorites', (req, res) => {
+    const username = req.query.username
+
+    database.query(
+        "SELECT * FROM is_favorite WHERE cwru_id = ?",
+        username,
+        (err, result) => {
+            if (err) {
+                console.log(err)
+            } else {
+                res.send(result)
+            }
+        }
+    )
+})
+
+
 app.listen(3003, () => {
     console.log("running on port 3003")
 })
