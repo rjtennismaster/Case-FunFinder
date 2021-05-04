@@ -11,6 +11,7 @@ function FunFolder( {username, setUsername, password,
     const [funFolderItems, setFunFolderItems] = useState([])
     const [favoritesItems, setFavoritesItems] = useState([])
     const [itemToShow, setItemToShow] = useState([])
+    
 
     useEffect(() => {
       Axios.get("http://localhost:3003/getFunFolder", {
@@ -45,6 +46,18 @@ function FunFolder( {username, setUsername, password,
       })
     }
 
+    const removeAttraction = () => {
+      Axios.delete(`http://localhost:3003/removeAttraction/${username}/${itemToShow.fun_id}`)
+      .then(() => {
+        setFunFolderItems(
+          funFolderItems.filter((item) => {
+            return item.fun_id !== itemToShow.fun_id
+          })
+        )
+        setShowAttractionModal(false)
+      })
+    }
+
     return (
       <div>
         <NavBar
@@ -66,10 +79,12 @@ function FunFolder( {username, setUsername, password,
             </div>
             <div className = "folderContent">
               {funFolderItems.map((item, index) => {
+                return (
                 <button key = {index} value = {item.fun_id} onClick = {(event) =>  {getAttractionInfo(event)
                   setShowAttractionModal(true)}
                 }><h6>{item.attraction_name}</h6>
                 </button>
+                )
               })}
             </div>
           </div>
@@ -92,7 +107,12 @@ function FunFolder( {username, setUsername, password,
               <li>Rating: {itemToShow.rating}</li>
             </ul>
           </div>
-          <button onClick = {setShowAttractionModal(false)}
+          <button onClick = {() => setShowAttractionModal(false)}>
+            Close Attraction Information
+          </button>
+          <button onClick = {removeAttraction}>
+            Remove from Fun Folder
+          </button>
         </Modal>
       </div>
     )
