@@ -65,7 +65,7 @@ app.post('/addToFunFolder', (req, res) => {
     const name = req.body.name
 
     database.query(
-        "INSERT INTO is_tracking (cwru_id, attraction_fun_id, attraction_name) VALUES (?, ?, ?)",
+        "INSERT INTO is_tracking (cwru_id, fun_id, attraction_name) VALUES (?, ?, ?)",
         [cwruId, funId, name],
         (err, result) => {
             if (err) {
@@ -169,7 +169,7 @@ app.delete('/removeAttraction/:username/:fun', (req, res) => {
     const username = req.params.username
     const funId = req.params.fun
 
-    database.query("DELETE FROM is_tracking WHERE cwru_id = ? AND attraction_fun_id = ?",
+    database.query("DELETE FROM is_tracking WHERE cwru_id = ? AND fun_id = ?",
     [username, funId], (err, result) => {
         if (err) {
             console.log(err)
