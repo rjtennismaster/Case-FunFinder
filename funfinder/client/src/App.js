@@ -1,5 +1,5 @@
 import "./App.css"
-import Search from "./Search"
+import RestaurantSearch from "./RestaurantSearch"
 import HomePage from "./HomePage"
 import FunFolder from "./components/FunFolder"
 import "bootstrap/dist/css/bootstrap.css"
@@ -41,7 +41,7 @@ function App() {
           />
           <Route 
           path = "/search" 
-          render = {(props) => <Search
+          render = {(props) => <RestaurantSearch
                                   {...props}
                                   username = {username}
                                   password = {password}

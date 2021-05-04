@@ -165,6 +165,20 @@ app.get('/getAttractionInfo', (req, res) => {
     )
 })
 
+app.get('/getAllRestaurants', (req, res) => {
+
+    database.query(
+        "SELECT * FROM attractions A NATURAL JOIN restaurants R",  
+        (err, result) => {
+            if (err) {
+                console.log(err)
+            } else {
+                res.send(result)
+            }
+        }
+    )
+})
+
 app.delete('/removeAttraction/:username/:fun', (req, res) => {
     const username = req.params.username
     const funId = req.params.fun

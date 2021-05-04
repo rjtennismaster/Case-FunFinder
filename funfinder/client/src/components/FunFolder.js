@@ -125,12 +125,15 @@ function FunFolder( {username, setUsername, password,
             <div className = "favoritesContent">
             {favoritesItems.map((item, index) => {
                 return (
-                <button key = {index}
-                        value = {item.fun_id}
-                        onClick = {(event) => removeFromFavorites(event)}
-                        >
-                  <h6>{item.attraction_name}</h6>
-                </button>
+                <div key = {index} className = "favoritesCard">
+                  <h6>{item.attraction_name}</h6>  
+                  <button key = {index}
+                          value = {item.fun_id}
+                          onClick = {(event) => removeFromFavorites(event)}
+                          >
+                            Remove from Favorites
+                  </button>
+                </div>
                 )
               })}
             </div>
@@ -145,13 +148,11 @@ function FunFolder( {username, setUsername, password,
             <h1>{itemToShow.attraction_name}</h1>
             <ul>
               <li>Type: {itemToShow.attraction_type}</li>
-              <li>City: {itemToShow.city}</li>
-              <li>Street Address: {itemToShow.street_address}</li>
-              <li>Zip Code: {itemToShow.zip_code}</li>
-              <li>Opens at: {itemToShow.opening_hour}</li>
-              <li>Closes at: {itemToShow.closing_hour}</li>
+              <li>Location: {itemToShow.street_address} {itemToShow.city}, OH {itemToShow.zip_code}</li>
+              <li>Opens at (Military Time): {itemToShow.opening_hour}</li>
+              <li>Closes at (Military Time): {itemToShow.closing_hour}</li>
               <li>Do I need a mask? {itemToShow.mask_required}</li>
-              <li>Rating: {itemToShow.rating}</li>
+              <li>Rating out of 5: {itemToShow.rating}</li>
             </ul>
           </div>
           <button onClick = {() => setShowAttractionModal(false)}>

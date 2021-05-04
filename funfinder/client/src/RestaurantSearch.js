@@ -5,7 +5,7 @@ import { Form } from "react-bootstrap"
 
 
 
-function Search( {username, setUsername, password, 
+function RestaurantSearch( {username, setUsername, password, 
   setPassword, setLoginStatus, 
   firstName, setFirstName, lastName, setLastName,
   setShowWelcomeModal } ) {
@@ -44,6 +44,20 @@ function Search( {username, setUsername, password,
             }))
         })
     }
+
+    const getAllRestaurants = (event) => {
+      console.log("it's working at least")
+      event.preventDefault()
+      Axios.get("http://localhost:3003/getAllRestaurants")
+        .then((response) => {
+            setRResultsGeneral(response.data.map((restaurant) => {
+              console.log(response.data)
+              return restaurant
+            }))
+        })
+    }
+
+
 
     const addToFunFolder = (event) => {
       Axios.post("http://localhost:3003/addToFunFolder", {
@@ -176,7 +190,27 @@ function Search( {username, setUsername, password,
           <button type = "submit">Find Restaurants</button>
         </Form>
 
+        <br/>
+        <br/>
+        <Form className = "container" onSubmit = {(event) => getAllRestaurants(event)}>
+          <span>Show me All the Restaurants!</span>
+          <br/>
+          <button type = "submit">Find Restaurants</button>
+        </Form>
+        
+        <br/>
+        <br/>
+
+        <Form className = "container" onSubmit = {(event) => getAllRestaurants(event)}>
+          <h3>Narrow Restaurant Search:</h3>
+          
+          <button type = "submit">Find Restaurants</button>
+        </Form>
+        
+
+
         <div className = "resultsContainer">
+          <h3>Results</h3>
           {rResultsGeneral.map((restaurant, index) => {
             return (
               <div
@@ -188,9 +222,7 @@ function Search( {username, setUsername, password,
                 <h4>{restaurant.rname}</h4>
                 <ul>
                   <li>Owner: {restaurant.owner}</li>
-                  <li>Street Address: {restaurant.street_address}</li>
-                  <li>City: {restaurant.city}</li>
-                  <li>Zip Code: {restaurant.zip_code}</li>
+                  <li>Location: {restaurant.street_address} {restaurant.city}, OH {restaurant.zip_code}</li>
                   <li>Opens At (Military Time): {restaurant.opening_hour}</li>
                   <li>Closes At (Military Time): {restaurant.closing_hour}</li>
                   <li>Are Vegatarian Options Available? {restaurant.vegetarian_options}</li>
@@ -199,7 +231,7 @@ function Search( {username, setUsername, password,
                   <li>Do I Need to Wear a Mask? {restaurant.mask_required}</li>
                   <li>Rating Out of 5: {restaurant.rating}</li>
                 </ul>
-                <button onClick = {(event) => addToFunFolder(event)}></button>
+                <button onClick = {(event) => addToFunFolder(event)}>Add to your Fun Folder!</button>
                 <h6>{successfulAdd}</h6>
               </div>
             )
@@ -209,4 +241,4 @@ function Search( {username, setUsername, password,
       )
 }
 
-export default Search
+export default RestaurantSearch
