@@ -279,6 +279,7 @@ function RestaurantSearch( {username, setUsername, password,
 
         <div className = "resultsContainer">
           <h3>Results</h3>
+          <button onClick = {() => setRResultsGeneral([])}>Clear Results</button>
           {rResultsGeneral.map((restaurant, index) => {
             return (
               <div
