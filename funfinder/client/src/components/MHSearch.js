@@ -346,7 +346,7 @@ function MHSearch( {username, setUsername, password,
                     onClick = {(event) => addToFunFolder(event)}
                     data-funId = {museum.fun}
                     data-name = {museum.attraction_name}>
-                      Add this Restaurant to your Fun Folder!
+                      Add this Mueseum/Historical Site to your Fun Folder!
                   </button>
                 </div>
               )

@@ -245,7 +245,7 @@ app.get('/findEventfulRestaurants', (req, res) => {
         `SELECT A1.fun_id AS fun, A1.attraction_name, A1.street_address, A1.city, A1.zip_code, A1.opening_hour,
          A1.closing_hour, A1.mask_required, A1.rating, E.ename, E.opening_date, E.closing_date, A2.opening_hour AS eventOpening, 
          A2.closing_hour AS eventClosing, E.is_recurring FROM attractions A1, hosts H, events E, attractions A2 WHERE E.fun_id = H.event_being_hosted_fun_id 
-         AND A1.fun = H.host_fun_id AND E.fun_id = A2.fun_id AND A1.attraction_type = 'restaurant'`,
+         AND A1.fun_id = H.host_fun_id AND E.fun_id = A2.fun_id AND A1.attraction_type = 'restaurant'`,
         (err, result) => {
             if (err) {
                 console.log(err)
@@ -343,7 +343,7 @@ app.get('/findEventfulTheatres', (req, res) => {
         `SELECT A1.fun_id AS fun, A1.attraction_name, A1.street_address, A1.city, A1.zip_code,
          A1.mask_required, A1.rating, E.ename, E.opening_date, E.closing_date, A2.opening_hour AS eventOpening, 
          A2.closing_hour AS eventClosing, E.is_recurring FROM attractions A1, hosts H, events E, attractions A2 WHERE E.fun_id = H.event_being_hosted_fun_id 
-         AND A1.fun = H.host_fun_id AND E.fun_id = A2.fun_id AND A1.attraction_type = 'theatre'`,
+         AND A1.fun_id = H.host_fun_id AND E.fun_id = A2.fun_id AND A1.attraction_type = 'theatre'`,
         (err, result) => {
             if (err) {
                 console.log(err)
@@ -353,6 +353,103 @@ app.get('/findEventfulTheatres', (req, res) => {
         }
     )
 })
+
+app.get('/getMGeneral', (req, res) => {
+    const city = req.query.city
+    const openingHour = req.query.openingHour
+    const closingHour = req.query.closingHour
+    const maskRequired = req.query.maskRequired
+    const rating = req.query.rating
+
+    database.query(
+        "SELECT * FROM museums_historical M NATURAL JOIN attractions A WHERE A.city = ? AND A.opening_hour >= ? AND A.closing_hour <= ? AND A.mask_required = ? AND A.rating >= ?",
+        [city, openingHour, closingHour, maskRequired, rating],
+        (err, result) => {
+            if (err) {
+                console.log(err)
+            } else {
+                res.send(result)
+            }
+        }
+    )
+})
+
+app.get('/getAllM', (req, res) => {
+    database.query(
+        "SELECT * FROM attractions A NATURAL JOIN museums_historical M",
+        (err, result) => {
+            if (err) {
+                console.log(err)
+            } else {
+                res.send(result)
+            }
+        }
+    )
+})
+
+app.get('/getMByName', (req, res) => {
+    const name = req.query.name
+
+    database.query(
+        "SELECT * FROM attractions A NATURAL JOIN museums_historical M WHERE M.mhname = ?",
+        name,  
+        (err, result) => {
+            if (err) {
+                console.log(err)
+            } else {
+                res.send(result)
+            }
+        }
+    )
+})
+
+app.get('/findMWithFood', (req, res) => {
+    
+    database.query(
+        "SELECT * FROM attractions A NATURAL JOIN museums_historical M WHERE M.has_food_court = 'Y'",
+        (err, result) => {
+            if (err) {
+                console.log(err)
+            } else {
+                res.send(result)
+            }
+        }
+    )
+})
+
+app.get('/getMByZipCode', (req, res) => {
+    const mZipcode = req.query.mZipcode
+
+    database.query(
+        "SELECT * FROM attractions A NATURAL JOIN museums_historical M WHERE A.zip_code = ?",
+        mZipcode,  
+        (err, result) => {
+            if (err) {
+                console.log(err)
+            } else {
+                res.send(result)
+            }
+        }
+    )
+})
+
+app.get('/findEventfulM', (req, res) => {
+
+    database.query(
+        `SELECT A1.fun_id AS fun, A1.attraction_name, A1.street_address, A1.city, A1.zip_code, A1.opening_hour,
+         A1.closing_hour, A1.mask_required, A1.rating, E.ename, E.opening_date, E.closing_date, A2.opening_hour AS eventOpening, 
+         A2.closing_hour AS eventClosing, E.is_recurring FROM attractions A1, hosts H, events E, attractions A2 WHERE E.fun_id = H.event_being_hosted_fun_id 
+         AND A1.fun_id = H.host_fun_id AND E.fun_id = A2.fun_id AND A1.attraction_type = 'museum/historical site'`,
+        (err, result) => {
+            if (err) {
+                console.log(err)
+            } else {
+                res.send(result)
+            }
+        }
+    )
+})
+
 app.delete('/removeAttraction/:username/:fun', (req, res) => {
     const username = req.params.username
     const funId = req.params.fun
@@ -382,6 +479,7 @@ app.delete('/removeFromFavorites/:username/:funId', (req, res) => {
     }
     )
 })
+
 
 app.listen(3003, () => {
     console.log("running on port 3003")
