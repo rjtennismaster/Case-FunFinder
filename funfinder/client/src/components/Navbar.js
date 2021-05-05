@@ -37,6 +37,11 @@ function Navbar( {setUsername, setPassword, setShowWelcomeModal,
                 Theatres
             </li>
             </Link>
+            <Link className = "nav-link active" to = "/mhsearch">
+            <li className = "nav-item active">
+                Museums/Historical
+            </li>
+            </Link>
             <Link className = "nav-link active" to = "/funfolder">
             <li className = "nav-item active">
                 Fun Folder

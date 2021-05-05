@@ -147,6 +147,7 @@ function TheatreSearch( {username, setUsername, password,
           >
             <option>Select a City</option>
             <option value = "Cleveland">Cleveland</option>
+            <option value = "Brooklyn">Brooklyn</option>
           </select>
           <span> that can hold at least </span>
           <select value = {tNumberSeats}
@@ -304,7 +305,7 @@ function TheatreSearch( {username, setUsername, password,
                 <button 
                   key = {index} 
                   onClick = {(event) => addToFunFolder(event)}
-                  data-funId = {theatre.fun_id}
+                  data-funId = {theatre.fun}
                   data-name = {theatre.attraction_name}>
                     Add this Theatre to your Fun Folder!
                 </button>

@@ -370,7 +370,7 @@ function RestaurantSearch( {username, setUsername, password,
                 <button 
                   key = {index}
                   onClick = {(event) => addToFunFolder(event)}
-                  data-funId = {restaurant.fun_id}
+                  data-funId = {restaurant.fun}
                   data-name = {restaurant.attraction_name}>
                     Add this Restaurant to your Fun Folder!
                 </button>

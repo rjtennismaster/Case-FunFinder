@@ -242,10 +242,10 @@ app.get('/getRestaurantsByZipCode', (req, res) => {
 app.get('/findEventfulRestaurants', (req, res) => {
 
     database.query(
-        `SELECT A1.fun_id, A1.attraction_name, A1.street_address, A1.city, A1.zip_code, A1.opening_hour,
+        `SELECT A1.fun_id AS fun, A1.attraction_name, A1.street_address, A1.city, A1.zip_code, A1.opening_hour,
          A1.closing_hour, A1.mask_required, A1.rating, E.ename, E.opening_date, E.closing_date, A2.opening_hour AS eventOpening, 
          A2.closing_hour AS eventClosing, E.is_recurring FROM attractions A1, hosts H, events E, attractions A2 WHERE E.fun_id = H.event_being_hosted_fun_id 
-         AND A1.fun_id = H.host_fun_id AND E.fun_id = A2.fun_id AND A1.attraction_type = 'restaurant'`,
+         AND A1.fun = H.host_fun_id AND E.fun_id = A2.fun_id AND A1.attraction_type = 'restaurant'`,
         (err, result) => {
             if (err) {
                 console.log(err)
@@ -340,10 +340,10 @@ app.get('/findPopcornSellers', (req, res) => {
 app.get('/findEventfulTheatres', (req, res) => {
 
     database.query(
-        `SELECT A1.fun_id, A1.attraction_name, A1.street_address, A1.city, A1.zip_code,
+        `SELECT A1.fun_id AS fun, A1.attraction_name, A1.street_address, A1.city, A1.zip_code,
          A1.mask_required, A1.rating, E.ename, E.opening_date, E.closing_date, A2.opening_hour AS eventOpening, 
          A2.closing_hour AS eventClosing, E.is_recurring FROM attractions A1, hosts H, events E, attractions A2 WHERE E.fun_id = H.event_being_hosted_fun_id 
-         AND A1.fun_id = H.host_fun_id AND E.fun_id = A2.fun_id AND A1.attraction_type = 'theatre'`,
+         AND A1.fun = H.host_fun_id AND E.fun_id = A2.fun_id AND A1.attraction_type = 'theatre'`,
         (err, result) => {
             if (err) {
                 console.log(err)
