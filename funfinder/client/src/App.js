@@ -5,6 +5,7 @@ import TheatreSearch from "./components/TheatreSearch"
 import MHSearch from "./components/MHSearch"
 import FunFolder from "./components/FunFolder"
 import ParkSearch from "./components/ParksSearch"
+import EventSearch from "./components/EventSearch"
 import "bootstrap/dist/css/bootstrap.css"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import React, { useState } from "react"
@@ -96,6 +97,23 @@ function App() {
           <Route 
           path = "/parksearch" 
           render = {(props) => <ParkSearch
+                                  {...props}
+                                  username = {username}
+                                  password = {password}
+                                  setFirstName = {setFirstName}
+                                  setLastName = {setLastName}
+                                  firstName = {firstName}
+                                  lastName = {lastName}
+                                  setUsername = {setUsername}
+                                  setPassword = {setPassword}
+                                  setLoginStatus = {setLoginStatus}
+                                  showWelcomeModal = {showWelcomeModal}
+                                  setShowWelcomeModal = {setShowWelcomeModal}
+                              />}
+          />
+          <Route 
+          path = "/eventsearch" 
+          render = {(props) => <EventSearch
                                   {...props}
                                   username = {username}
                                   password = {password}

@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import NavBar from "./components/Navbar"
+import NavBar from "./Navbar"
 import Axios from "axios"
 import { Form } from "react-bootstrap"
 

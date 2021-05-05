@@ -47,6 +47,11 @@ function Navbar( {setUsername, setPassword, setShowWelcomeModal,
                 Parks
             </li>
             </Link>
+            <Link className = "nav-link active" to = "/eventsearch">
+            <li className = "nav-item active">
+                Events
+            </li>
+            </Link>
             <Link className = "nav-link active" to = "/funfolder">
             <li className = "nav-item active">
                 Fun Folder
