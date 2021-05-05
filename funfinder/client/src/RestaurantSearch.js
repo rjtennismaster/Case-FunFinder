@@ -152,7 +152,6 @@ function RestaurantSearch( {username, setUsername, password,
         
         <h1>Search Restaurants</h1>
         <Form className = "container" onSubmit = {(event) => getRestaurantsGeneral(event)}>
-          <h3>General Restaurant Search:</h3>
           <span>Show me Restaurants in </span>
           <select value = {rCity} 
                   onChange = {(event) => setRCity(event.target.value)}
@@ -259,10 +258,10 @@ function RestaurantSearch( {username, setUsername, password,
         </Form>
         
         <br/>
-        <br/>
+  
 
         <Form className = "container" onSubmit = {(event) => getRestaurantByName(event)}>
-          <h3>Narrow Restaurant Search:</h3>
+          
             <span>Search by Name:</span>
             <br/>
             <input
@@ -324,8 +323,6 @@ function RestaurantSearch( {username, setUsername, password,
               <div
                 className = "resultCard"
                 key = {index}
-                data-funId = {restaurant.fun_id}
-                data-name = {restaurant.attraction_name}
               >
                 <h4>{restaurant.rname}</h4>
                 <ul>
@@ -339,7 +336,13 @@ function RestaurantSearch( {username, setUsername, password,
                   <li>Do I Need to Wear a Mask? {restaurant.mask_required}</li>
                   <li>Rating Out of 5: {restaurant.rating}</li>
                 </ul>
-                <button key = {index} onClick = {(event) => addToFunFolder(event)}>Add to your Fun Folder!</button>
+                <button 
+                  key = {index}
+                  onClick = {(event) => addToFunFolder(event)}
+                  data-funId = {restaurant.fun_id}
+                  data-name = {restaurant.attraction_name}
+                  >Add to your Fun Folder!
+                </button>
               </div>
             )
           })}
@@ -348,8 +351,6 @@ function RestaurantSearch( {username, setUsername, password,
               <div
                 className = "resultCard"
                 key = {index}
-                data-funId = {restaurant.fun_id}
-                data-name = {restaurant.attraction_name}
               >
                 <h4>{restaurant.attraction_name}</h4>
                 <ul>
@@ -366,7 +367,13 @@ function RestaurantSearch( {username, setUsername, password,
                   <li>At what Time? From {restaurant.eventOpening} to {restaurant.eventClosing}</li>
                   <li>Will this event ever happen again? {restaurant.is_recurring}</li>
                 </ul>
-                <button key = {index} onClick = {(event) => addToFunFolder(event)}>Add this Restaurant to your Fun Folder!</button>
+                <button 
+                  key = {index}
+                  onClick = {(event) => addToFunFolder(event)}
+                  data-funId = {restaurant.fun_id}
+                  data-name = {restaurant.attraction_name}>
+                    Add this Restaurant to your Fun Folder!
+                </button>
               </div>
             )
           })}

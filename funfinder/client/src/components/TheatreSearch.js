@@ -139,7 +139,7 @@ function TheatreSearch( {username, setUsername, password,
 
         <h1>Search Theatres</h1>
         <Form className = "container" onSubmit = {(event) => getTheatresGeneral(event)}>
-          <h3>General Theatre Search:</h3>
+          
           <span>Show me Theatres in </span>
           <select value = {tCity} 
                   onChange = {(event) => setTCity(event.target.value)}
@@ -204,10 +204,10 @@ function TheatreSearch( {username, setUsername, password,
         </Form>
         
         <br/>
-        <br/>
+        
 
         <Form className = "container" onSubmit = {(event) => getTheatreByName(event)}>
-          <h3>Narrow Theatre Search:</h3>
+    
             <span>Search by Name:</span>
             <br/>
             <input
@@ -262,8 +262,6 @@ function TheatreSearch( {username, setUsername, password,
               <div
                 className = "resultCard"
                 key = {index}
-                data-funId = {theatre.fun_id}
-                data-name = {theatre.attraction_name}
               >
                 <h4>{theatre.tname}</h4>
                 <ul>
@@ -274,7 +272,13 @@ function TheatreSearch( {username, setUsername, password,
                   <li>Top Program Showing: {theatre.top_program_showing}</li>
                   <li>Rating Out of 5: {theatre.rating}</li>
                 </ul>
-                <button key = {index} onClick = {(event) => addToFunFolder(event)}>Add to your Fun Folder!</button>
+                <button 
+                  key = {index}
+                  onClick = {(event) => addToFunFolder(event)}
+                  data-funId = {theatre.fun_id}
+                  data-name = {theatre.attraction_name}>
+                    Add to your Fun Folder!
+                </button>
               </div>
             )
           })}
@@ -283,8 +287,6 @@ function TheatreSearch( {username, setUsername, password,
               <div
                 className = "resultCard"
                 key = {index}
-                data-funId = {theatre.fun_id}
-                data-name = {theatre.attraction_name}
               >
                 <h4>{theatre.attraction_name}</h4>
                 <ul>
@@ -299,7 +301,13 @@ function TheatreSearch( {username, setUsername, password,
                   <li>At what Time? From {theatre.eventOpening} to {theatre.eventClosing}</li>
                   <li>Will this event ever happen again? {theatre.is_recurring}</li>
                 </ul>
-                <button key = {index} onClick = {(event) => addToFunFolder(event)}>Add this Theatre to your Fun Folder!</button>
+                <button 
+                  key = {index} 
+                  onClick = {(event) => addToFunFolder(event)}
+                  data-funId = {theatre.fun_id}
+                  data-name = {theatre.attraction_name}>
+                    Add this Theatre to your Fun Folder!
+                </button>
               </div>
             )
           })}
