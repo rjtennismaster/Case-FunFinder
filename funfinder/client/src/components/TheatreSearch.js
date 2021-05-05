@@ -1,11 +1,10 @@
 import React, { useState } from "react"
-import NavBar from "./components/Navbar"
+import NavBar from "./Navbar"
 import Axios from "axios"
 import { Form } from "react-bootstrap"
 
 
-
-function RestaurantSearch( {username, setUsername, password, 
+function TheatreSearch( {username, setUsername, password, 
   setPassword, setLoginStatus, 
   firstName, setFirstName, lastName, setLastName,
   setShowWelcomeModal } ) {
@@ -377,4 +376,4 @@ function RestaurantSearch( {username, setUsername, password,
       )
 }
 
-export default RestaurantSearch
+export default TheatreSearch
