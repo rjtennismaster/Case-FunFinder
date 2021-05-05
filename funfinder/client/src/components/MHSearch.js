@@ -222,7 +222,7 @@ function MHSearch( {username, setUsername, password,
             <span>, and their rating should be at least </span>
             <select value = {mRating} 
                     onChange = {(event) => setMRating(event.target.value)}
-                    name = "rgenrating"
+                    name = "mgenrating"
             >
               <option>Select a Rating</option>
               <option value = "1.0">1</option>
