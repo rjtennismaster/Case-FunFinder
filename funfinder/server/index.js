@@ -450,6 +450,128 @@ app.get('/findEventfulM', (req, res) => {
     )
 })
 
+app.get('/getPGeneral', (req, res) => {
+    const city = req.query.city
+    const maskRequired = req.query.maskRequired
+    const rating = req.query.rating
+    const acres = req.query.acres
+
+    database.query(
+        `SELECT * FROM attractions A NATURAL JOIN parks P WHERE A.city = ? AND A.mask_required = ? 
+        AND A.rating >= ? AND P.acre_count >= ?`,
+        [city, maskRequired, rating, acres],
+        (err, result) => {
+            if (err) {
+                console.log(err)
+            } else {
+                res.send(result)
+            }
+        }
+    )
+})
+
+app.get('/getAllP', (req, res) => {
+    database.query(
+        "SELECT * FROM attractions A NATURAL JOIN parks P",
+        (err, result) => {
+            if (err) {
+                console.log(err)
+            } else {
+                res.send(result)
+            }
+        }
+    )
+})
+
+app.get('/getPByName', (req, res) => {
+    const name = req.query.name
+
+    database.query(
+        "SELECT * FROM attractions A NATURAL JOIN parks P WHERE P.pname = ?",
+        name,  
+        (err, result) => {
+            if (err) {
+                console.log(err)
+            } else {
+                res.send(result)
+            }
+        }
+    )
+})
+
+app.get('/getPByZipCode', (req, res) => {
+    const pZipcode = req.query.pZipcode
+
+    database.query(
+        "SELECT * FROM attractions A NATURAL JOIN parks P WHERE A.zip_code = ?",
+        pZipcode,  
+        (err, result) => {
+            if (err) {
+                console.log(err)
+            } else {
+                res.send(result)
+            }
+        }
+    )
+})
+
+app.get('/pWPetArea', (req, res) => {
+
+    database.query(
+        "SELECT * FROM attractions A NATURAL JOIN parks P WHERE P.has_pet_area = 'Y'",
+        (err, result) => {
+            if (err) {
+                console.log(err)
+            } else {
+                res.send(result)
+            }
+        }
+    )
+})
+
+app.get('/pWTennis', (req, res) => {
+
+    database.query(
+        "SELECT * FROM attractions A NATURAL JOIN parks P WHERE P.has_tennis_courts = 'Y'",
+        (err, result) => {
+            if (err) {
+                console.log(err)
+            } else {
+                res.send(result)
+            }
+        }
+    )
+})
+
+app.get('/pWVolleyball', (req, res) => {
+
+    database.query(
+        "SELECT * FROM attractions A NATURAL JOIN parks P WHERE P.has_volleyball_net = 'Y'",
+        (err, result) => {
+            if (err) {
+                console.log(err)
+            } else {
+                res.send(result)
+            }
+        }
+    )
+})
+
+app.get('/pWDuckPond', (req, res) => {
+
+    database.query(
+        "SELECT * FROM attractions A NATURAL JOIN parks P WHERE P.has_duck_pond = 'Y'",
+        (err, result) => {
+            if (err) {
+                console.log(err)
+            } else {
+                res.send(result)
+            }
+        }
+    )
+})
+
+
 app.delete('/removeAttraction/:username/:fun', (req, res) => {
     const username = req.params.username
     const funId = req.params.fun
@@ -480,6 +602,22 @@ app.delete('/removeFromFavorites/:username/:funId', (req, res) => {
     )
 })
 
+app.get('/findEventfulP', (req, res) => {
+
+    database.query(
+        `SELECT A1.fun_id AS fun, A1.attraction_name, A1.street_address, A1.city, A1.zip_code,
+         A1.mask_required, A1.rating, E.ename, E.opening_date, E.closing_date, A2.opening_hour AS eventOpening, 
+         A2.closing_hour AS eventClosing, E.is_recurring FROM attractions A1, hosts H, events E, attractions A2 WHERE E.fun_id = H.event_being_hosted_fun_id 
+         AND A1.fun_id = H.host_fun_id AND E.fun_id = A2.fun_id AND A1.attraction_type = 'park'`,
+        (err, result) => {
+            if (err) {
+                console.log(err)
+            } else {
+                res.send(result)
+            }
+        }
+    )
+})
 
 app.listen(3003, () => {
     console.log("running on port 3003")
