@@ -21,8 +21,9 @@ function RestaurantSearch( {username, setUsername, password,
     const [rName, setRName] = useState("")
     const [rRating, setRRating] = useState("")
 
-    //restaurants results list
+    //restaurants results lists
     const [rResultsGeneral, setRResultsGeneral] = useState([])
+    const [rEventResults, setREventResults] = useState([])
 
     const getRestaurantsGeneral = (event) => {
       console.log("it's working at least")
@@ -82,6 +83,18 @@ function RestaurantSearch( {username, setUsername, password,
         })
     }
 
+    const findVegan = (event) => {
+      console.log("it's working at least")
+      event.preventDefault()
+      Axios.get("http://localhost:3003/findVegan")
+        .then((response) => {
+            setRResultsGeneral(response.data.map((restaurant) => {
+              console.log(response.data)
+              return restaurant
+            }))
+        })
+    }
+
     const getRestaurantsByZipCode = (event) => {
       console.log("it's working at least")
       event.preventDefault()
@@ -95,6 +108,18 @@ function RestaurantSearch( {username, setUsername, password,
               return restaurant
             }))
         })
+    }
+
+    const findEventfulRestaurants = (event) => {
+      console.log("it's working at least")
+      event.preventDefault()
+      Axios.get("http://localhost:3003/findEventfulRestaurants")
+      .then((response) => {
+        setREventResults(response.data.map((restaurant) => {
+          console.log(response.data)
+          return restaurant
+        }))
+      })
     }
 
     const addToFunFolder = (event) => {
@@ -229,7 +254,6 @@ function RestaurantSearch( {username, setUsername, password,
         </Form>
 
         <br/>
-        <br/>
         <Form className = "container" onSubmit = {(event) => getAllRestaurants(event)}>
           <span>Show me All the Restaurants!</span>
           <br/>
@@ -254,7 +278,6 @@ function RestaurantSearch( {username, setUsername, password,
         </Form>
 
         <br/>
-        <br/>
         <Form className = "container" onSubmit = {getRestaurantsByZipCode}>
             <span>Show me Restaurants in this Zip Code:</span>
             <br/>
@@ -269,17 +292,35 @@ function RestaurantSearch( {username, setUsername, password,
         </Form>
 
         <br/>
-        <br/>
 
         <Form className = "container" onSubmit = {findVegetarian}>
-            <span>Show me Restaurants that Offer Vegetarian Options!</span>
+            <span>Show me Restaurants that Offer Vegetarian Options.</span>
+            <br/>
+          <button type = "submit">Find Restaurants</button>
+        </Form>
+        <br/>
+        <Form className = "container" onSubmit = {findVegan}>
+            <span>Show me Restaurants that Offer Vegan Options.</span>
             <br/>
           <button type = "submit">Find Restaurants</button>
         </Form>
 
+        <br/>
+        <Form className = "container" onSubmit = {findEventfulRestaurants}>
+          <span>Which Restaurants are hosting events? Show Me a Short Synposis of the Event Information.</span>
+          <br/>
+          <button type = "submit">Find Restaurants</button>
+        </Form>
         <div className = "resultsContainer">
           <h3>Results</h3>
-          <button onClick = {() => setRResultsGeneral([])}>Clear Results</button>
+          <button 
+            onClick = {() => {
+              setRResultsGeneral([])
+              setREventResults([])
+            }}>
+              Clear Results
+          </button>
+          <h6>{successfulAdd}</h6>
           {rResultsGeneral.map((restaurant, index) => {
             return (
               <div
@@ -300,8 +341,34 @@ function RestaurantSearch( {username, setUsername, password,
                   <li>Do I Need to Wear a Mask? {restaurant.mask_required}</li>
                   <li>Rating Out of 5: {restaurant.rating}</li>
                 </ul>
-                <button onClick = {(event) => addToFunFolder(event)}>Add to your Fun Folder!</button>
-                <h6>{successfulAdd}</h6>
+                <button key = {index} onClick = {(event) => addToFunFolder(event)}>Add to your Fun Folder!</button>
+              </div>
+            )
+          })}
+          {rEventResults.map((restaurant, index) => {
+            return (
+              <div
+                className = "resultCard"
+                key = {index}
+                data-funId = {restaurant.fun_id}
+                data-name = {restaurant.attraction_name}
+              >
+                <h4>{restaurant.attraction_name}</h4>
+                <ul>
+                  <li>Location: {restaurant.street_address} {restaurant.city}, OH {restaurant.zip_code}</li>
+                  <li>Opens At (Military Time): {restaurant.opening_hour}</li>
+                  <li>Closes At (Military Time): {restaurant.closing_hour}</li>
+                  <li>Do I Need to Wear a Mask? {restaurant.mask_required}</li>
+                  <li>Rating Out of 5: {restaurant.rating}</li>
+                </ul>
+                
+                <h6>{restaurant.attraction_name} is hosting {restaurant.ename}</h6>
+                <ul>
+                  <li>When? {restaurant.opening_date} to {restaurant.closing_date}</li>
+                  <li>At what Time? From {restaurant.eventOpening} to {restaurant.eventClosing}</li>
+                  <li>Will this event ever happen again? {restaurant.is_recurring}</li>
+                </ul>
+                <button key = {index} onClick = {(event) => addToFunFolder(event)}>Add this Restaurant to your Fun Folder!</button>
               </div>
             )
           })}

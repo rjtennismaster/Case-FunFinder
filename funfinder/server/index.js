@@ -209,12 +209,43 @@ app.get('/findVegetarian', (req, res) => {
     )
 })
 
+app.get('/findVegan', (req, res) => {
+
+    database.query(
+        "SELECT * FROM attractions A NATURAL JOIN restaurants R WHERE R.vegan_options = 'Y'",
+        (err, result) => {
+            if (err) {
+                console.log(err)
+            } else {
+                res.send(result)
+            }
+        }
+    )
+})
+
 app.get('/getRestaurantsByZipCode', (req, res) => {
     const rZipcode = req.query.rZipcode
 
     database.query(
         "SELECT * FROM attractions A NATURAL JOIN restaurants R WHERE A.zip_code = ?",
         rZipcode,
+        (err, result) => {
+            if (err) {
+                console.log(err)
+            } else {
+                res.send(result)
+            }
+        }
+    )
+})
+
+app.get('/findEventfulRestaurants', (req, res) => {
+
+    database.query(
+        `SELECT A1.fun_id, A1.attraction_name, A1.street_address, A1.city, A1.zip_code, A1.opening_hour,
+         A1.closing_hour, A1.mask_required, A1.rating, E.ename, E.opening_date, E.closing_date, A2.opening_hour AS eventOpening, 
+         A2.closing_hour AS eventClosing, E.is_recurring FROM attractions A1, hosts H, events E, attractions A2 WHERE E.fun_id = H.event_being_hosted_fun_id 
+         AND A1.fun_id = H.host_fun_id AND E.fun_id = A2.fun_id AND A1.attraction_type = 'restaurant'`,
         (err, result) => {
             if (err) {
                 console.log(err)
