@@ -277,7 +277,7 @@ function RestaurantSearch( {username, setUsername, password,
 
         <br/>
         <Form className = "container" onSubmit = {getRestaurantsByZipCode}>
-            <span>Show me Restaurants in this Zip Code:</span>
+            <span>Search by Zip Code:</span>
             <br/>
             <input
               type = "text"

@@ -256,6 +256,103 @@ app.get('/findEventfulRestaurants', (req, res) => {
     )
 })
 
+app.get('/getTheatresGeneral', (req, res) => {
+    const city = req.query.city
+    const maskRequired = req.query.maskRequired
+    const rating = req.query.rating
+    const popcorn = req.query.popcorn
+    const capacity = req.query.capacity
+
+    database.query(
+        `SELECT * FROM attractions A NATURAL JOIN theatres T WHERE A.city = ? AND A.mask_required = ? 
+        AND A.rating >= ? AND T.sells_popcorn = ? AND T.number_seats >= ?`,
+        [city, maskRequired, rating, popcorn, capacity],
+        (err, result) => {
+            if (err) {
+                console.log(err)
+            } else {
+                res.send(result)
+            }
+        }
+    )
+})
+
+app.get('/getAllTheatres', (req, res) => {
+
+    database.query(
+        "SELECT * FROM attractions A NATURAL JOIN theatres T",
+        (err, result) => {
+            if (err) {
+                console.log(err)
+            } else {
+                res.send(result)
+            }
+        }
+    )
+})
+
+app.get('/getTheatreByName', (req, res) => {
+    const name = req.query.name
+
+    database.query(
+        "SELECT * FROM attractions A NATURAL JOIN theatres T WHERE T.tname = ?",
+        name,  
+        (err, result) => {
+            if (err) {
+                console.log(err)
+            } else {
+                res.send(result)
+            }
+        }
+    )
+})
+
+app.get('/getTheatresByZipCode', (req, res) => {
+    const zipcode = req.query.tZipcode
+
+    database.query(
+        "SELECT * FROM attractions A NATURAL JOIN theatres T WHERE A.zip_code = ?",
+        zipcode,  
+        (err, result) => {
+            if (err) {
+                console.log(err)
+            } else {
+                res.send(result)
+            }
+        }
+    )
+})
+
+app.get('/findPopcornSellers', (req, res) => {
+
+    database.query(
+        "SELECT * FROM attractions A NATURAL JOIN theatres T WHERE T.sells_popcorn = 'Y'",
+        (err, result) => {
+            if (err) {
+                console.log(err)
+            } else {
+                res.send(result)
+            }
+        }
+    )
+})
+
+app.get('/findEventfulTheatres', (req, res) => {
+
+    database.query(
+        `SELECT A1.fun_id, A1.attraction_name, A1.street_address, A1.city, A1.zip_code,
+         A1.mask_required, A1.rating, E.ename, E.opening_date, E.closing_date, A2.opening_hour AS eventOpening, 
+         A2.closing_hour AS eventClosing, E.is_recurring FROM attractions A1, hosts H, events E, attractions A2 WHERE E.fun_id = H.event_being_hosted_fun_id 
+         AND A1.fun_id = H.host_fun_id AND E.fun_id = A2.fun_id AND A1.attraction_type = 'theatre'`,
+        (err, result) => {
+            if (err) {
+                console.log(err)
+            } else {
+                res.send(result)
+            }
+        }
+    )
+})
 app.delete('/removeAttraction/:username/:fun', (req, res) => {
     const username = req.params.username
     const funId = req.params.fun

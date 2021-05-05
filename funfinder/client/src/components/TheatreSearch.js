@@ -31,7 +31,9 @@ function TheatreSearch( {username, setUsername, password,
             params: {
                 city: tCity,
                 maskRequired: tMaskReq,
-                rating: parseFloat(tRating)
+                rating: parseFloat(tRating),
+                capacity: tNumberSeats,
+                popcorn: tPopcorn
             }
         }).then((response) => {
             setTResultsGeneral(response.data.map((theatre) => {
@@ -58,7 +60,7 @@ function TheatreSearch( {username, setUsername, password,
       event.preventDefault()
       Axios.get("http://localhost:3003/getTheatreByName", {
         params: {
-          rName: tName
+          name: tName
         }
       }).then((response) => {
             setTResultsGeneral(response.data.map((theatre) => {
@@ -146,19 +148,20 @@ function TheatreSearch( {username, setUsername, password,
             <option>Select a City</option>
             <option value = "Cleveland">Cleveland</option>
           </select>
-          <span> that can hold at least</span>
+          <span> that can hold at least </span>
           <select value = {tNumberSeats}
                   onChange = {(event) => setTNumberSeats(event.target.value)}
                   name = "tgenNumSeats"
           >
             <option>Select a Capacity</option>
+            <option value = "250">250</option>
             <option value = "500">500</option>
             <option value = "100">1000</option>
             <option value = "2000">2000</option>
             <option value = "5000">5000</option>
             <option value = "10000">10000</option>
           </select>
-          <span> people and they</span>
+          <span> people and they </span>
           <select value = {tPopcorn} 
                   onChange = {(event) => setTPopcorn(event.target.value)}
                   name = "tgenpopcorn"
@@ -167,7 +170,7 @@ function TheatreSearch( {username, setUsername, password,
             <option value = "Y">should</option>
             <option value = "N">should not</option>
           </select>
-          <span>sell popcorn. Their mask requirement should be </span>
+          <span> sell popcorn. Their mask requirement should be </span>
           <select value = {tMaskReq} 
                   onChange = {(event) => setTMaskReq(event.target.value)}
                   name = "tgenmaskreq"
@@ -219,7 +222,7 @@ function TheatreSearch( {username, setUsername, password,
 
         <br/>
         <Form className = "container" onSubmit = {getTheatresByZipCode}>
-            <span>Show me Theatres in this Zip Code:</span>
+            <span>Search by Zip Code:</span>
             <br/>
             <input
               type = "text"
