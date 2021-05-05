@@ -149,9 +149,7 @@ function RestaurantSearch( {username, setUsername, password,
           setLastName = {setLastName}
           setShowWelcomeModal = {setShowWelcomeModal}
         />
-        {/*
-        <SearchBody />
-        */}
+        
         <h1>Search Restaurants</h1>
         <Form className = "container" onSubmit = {(event) => getRestaurantsGeneral(event)}>
           <h3>General Restaurant Search:</h3>
@@ -327,7 +325,7 @@ function RestaurantSearch( {username, setUsername, password,
                 className = "resultCard"
                 key = {index}
                 data-funId = {restaurant.fun_id}
-                data-name = {restaurant.name}
+                data-name = {restaurant.attraction_name}
               >
                 <h4>{restaurant.rname}</h4>
                 <ul>
