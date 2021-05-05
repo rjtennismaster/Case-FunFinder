@@ -18,13 +18,11 @@ function RestaurantSearch( {username, setUsername, password,
     const [rOpening, setROpening] = useState("")
     const [rClosing, setRClosing] = useState("")
     const [rMaskReq, setRMaskReq] = useState("")
-    const [rVegetarian, setRVegetarian] = useState("")
-    const [rVegan, setRVegan] = useState("")
+    const [rName, setRName] = useState("")
     const [rRating, setRRating] = useState("")
 
     //restaurants results list
     const [rResultsGeneral, setRResultsGeneral] = useState([])
-
 
     const getRestaurantsGeneral = (event) => {
       console.log("it's working at least")
@@ -57,7 +55,32 @@ function RestaurantSearch( {username, setUsername, password,
         })
     }
 
+    const getRestaurantByName = (event) => {
+      console.log("it's working at least")
+      event.preventDefault()
+      Axios.get("http://localhost:3003/getRestaurantByName", {
+        params: {
+          rName: rName
+        }
+      }).then((response) => {
+            setRResultsGeneral(response.data.map((restaurant) => {
+              console.log(response.data)
+              return restaurant
+            }))
+        })
+    }
 
+    const findVegetarian = (event) => {
+      console.log("it's working at least")
+      event.preventDefault()
+      Axios.get("http://localhost:3003/findVegetarian")
+        .then((response) => {
+            setRResultsGeneral(response.data.map((restaurant) => {
+              console.log(response.data)
+              return restaurant
+            }))
+        })
+    }
 
     const addToFunFolder = (event) => {
       Axios.post("http://localhost:3003/addToFunFolder", {
@@ -201,13 +224,28 @@ function RestaurantSearch( {username, setUsername, password,
         <br/>
         <br/>
 
-        <Form className = "container" onSubmit = {(event) => getAllRestaurants(event)}>
+        <Form className = "container" onSubmit = {(event) => getRestaurantByName(event)}>
           <h3>Narrow Restaurant Search:</h3>
-          
+            <span>Search by Name:</span>
+            <br/>
+            <input
+              type = "text"
+              value = {rName}
+              onChange = {(event) => setRName(event.target.value)}
+              placeholder = "Enter a Restaurant Name..."
+            />
+            <br/>
           <button type = "submit">Find Restaurants</button>
         </Form>
-        
 
+        <br/>
+        <br/>
+
+        <Form className = "container" onSubmit = {findVegetarian}>
+            <span>Show me Restaurants that Offer Vegetarian Options!</span>
+            <br/>
+          <button type = "submit">Find Restaurants</button>
+        </Form>
 
         <div className = "resultsContainer">
           <h3>Results</h3>

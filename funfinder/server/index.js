@@ -179,6 +179,36 @@ app.get('/getAllRestaurants', (req, res) => {
     )
 })
 
+app.get('/getRestaurantByName', (req, res) => {
+    const rName = req.query.rName
+
+    database.query(
+        "SELECT * FROM attractions A NATURAL JOIN restaurants R WHERE R.rname = ?",
+        rName,  
+        (err, result) => {
+            if (err) {
+                console.log(err)
+            } else {
+                res.send(result)
+            }
+        }
+    )
+})
+
+app.get('/findVegetarian', (req, res) => {
+
+    database.query(
+        "SELECT * FROM attractions A NATURAL JOIN restaurants R WHERE R.vegetarian_options = 'Y'",
+        (err, result) => {
+            if (err) {
+                console.log(err)
+            } else {
+                res.send(result)
+            }
+        }
+    )
+})
+
 app.delete('/removeAttraction/:username/:fun', (req, res) => {
     const username = req.params.username
     const funId = req.params.fun
