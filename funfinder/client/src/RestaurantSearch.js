@@ -82,6 +82,21 @@ function RestaurantSearch( {username, setUsername, password,
         })
     }
 
+    const getRestaurantsByZipCode = (event) => {
+      console.log("it's working at least")
+      event.preventDefault()
+      Axios.get("http://localhost:3003/getRestaurantsByZipCode", {
+        params: {
+          rZipcode: rZipcode
+        }
+      }).then((response) => {
+            setRResultsGeneral(response.data.map((restaurant) => {
+              console.log(response.data)
+              return restaurant
+            }))
+        })
+    }
+
     const addToFunFolder = (event) => {
       Axios.post("http://localhost:3003/addToFunFolder", {
         cwruId: username,
@@ -233,6 +248,21 @@ function RestaurantSearch( {username, setUsername, password,
               value = {rName}
               onChange = {(event) => setRName(event.target.value)}
               placeholder = "Enter a Restaurant Name..."
+            />
+            <br/>
+          <button type = "submit">Find Restaurants</button>
+        </Form>
+
+        <br/>
+        <br/>
+        <Form className = "container" onSubmit = {getRestaurantsByZipCode}>
+            <span>Show me Restaurants in this Zip Code:</span>
+            <br/>
+            <input
+              type = "text"
+              value = {rZipcode}
+              onChange = {(event) => setRZipCode(event.target.value)}
+              placeholder = "Enter a Zip Code..."
             />
             <br/>
           <button type = "submit">Find Restaurants</button>

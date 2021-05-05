@@ -209,6 +209,22 @@ app.get('/findVegetarian', (req, res) => {
     )
 })
 
+app.get('/getRestaurantsByZipCode', (req, res) => {
+    const rZipcode = req.query.rZipcode
+
+    database.query(
+        "SELECT * FROM attractions A NATURAL JOIN restaurants R WHERE A.zip_code = ?",
+        rZipcode,
+        (err, result) => {
+            if (err) {
+                console.log(err)
+            } else {
+                res.send(result)
+            }
+        }
+    )
+})
+
 app.delete('/removeAttraction/:username/:fun', (req, res) => {
     const username = req.params.username
     const funId = req.params.fun
