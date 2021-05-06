@@ -32,7 +32,7 @@ function FunFolder( {username, setUsername, password,
             return funItem
           }))
       })
-    }, [])
+    }, [funFolderItems])
 
     const removeAttraction = (event) => {
       const fun = event.currentTarget.dataset.funid1
@@ -114,9 +114,9 @@ function FunFolder( {username, setUsername, password,
                   
                     <button
                       className = "folderRemoveB" 
-                      key = {index + 123} 
+                      key = {index + 12389} 
                       data-funid1 = {item.fun_id} 
-                      onClick = {removeAttraction}>
+                      onClick = {(event) => removeAttraction(event)}>
                       Remove from Fun Folder
                     </button>
                     <button 
