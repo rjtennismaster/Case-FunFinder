@@ -42,10 +42,9 @@ function FunFolder( {username, setUsername, password,
         right: 'auto',
         bottom: 'auto',
         marginRight: '-50%',
-        padding: '150px',
-        border: '2px solid black',
         transform: 'translate(-50%, -50%)',
-        background: '#FFD700'
+        height: '650px',
+        width: '900px'
       }
     }
 
