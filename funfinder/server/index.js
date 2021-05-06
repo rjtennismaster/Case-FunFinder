@@ -711,7 +711,7 @@ app.delete('/removeAttraction/:username/:fun', (req, res) => {
 
 app.delete('/removeFromFavorites/:username/:funId', (req, res) => {
     const username = req.params.username
-    const funId = req.params.fun
+    const funId = req.params.funId
 
     database.query("DELETE FROM is_favorite WHERE cwru_id = ? AND fun_id = ?",
     [username, funId], (err, result) => {
