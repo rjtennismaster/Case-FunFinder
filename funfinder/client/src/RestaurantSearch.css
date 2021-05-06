@@ -1,0 +1,22 @@
+.searchHeader{
+    padding: 10px;
+    position:relative;
+    left: 800px;
+}
+
+.pageContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.searchTitleContainer {
+    display: flex;
+    align-items: center;
+    position: relative;
+    background-color: #1E90FF;
+    top: -25px;
+    width: 100%;
+}

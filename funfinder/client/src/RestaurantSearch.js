@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import NavBar from "./components/Navbar"
 import Axios from "axios"
 import { Form } from "react-bootstrap"
+import "./RestaurantSearch.css"
 
 
 
@@ -149,8 +150,10 @@ function RestaurantSearch( {username, setUsername, password,
           setLastName = {setLastName}
           setShowWelcomeModal = {setShowWelcomeModal}
         />
-        
-        <h1>Search Restaurants</h1>
+        <div className = "pageContainer">
+        <div className = "searchTitleContainer">
+          <h1 className = "searchHeader">Search Restaurants</h1>
+        </div>
         <Form className = "container" onSubmit = {(event) => getRestaurantsGeneral(event)}>
           <span>Show me Restaurants in </span>
           <select value = {rCity} 
@@ -377,6 +380,7 @@ function RestaurantSearch( {username, setUsername, password,
               </div>
             )
           })}
+        </div>
         </div>
       </div>
       )
