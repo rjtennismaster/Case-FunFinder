@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from "react"
 import NavBar from "./Navbar"
 import Axios from "axios"
-import Modal from "react-modal"
+
 
 function FunFolder( {username, setUsername, password, 
     setPassword, setLoginStatus, setShowWelcomeModal,
     firstName, lastName, setFirstName, setLastName} ) {
 
-    const [showAttractionModal, setShowAttractionModal] = useState(false)
     const [funFolderItems, setFunFolderItems] = useState([])
     const [favoritesItems, setFavoritesItems] = useState([])
-    const [itemToShow, setItemToShow] = useState([])
     
 
     useEffect(() => {
@@ -35,56 +33,30 @@ function FunFolder( {username, setUsername, password,
       })
     })
 
-    const customStyles = {
-      content : {
-        top: '50%',
-        left: '50%',
-        right: 'auto',
-        bottom: 'auto',
-        marginRight: '-50%',
-        transform: 'translate(-50%, -50%)',
-        height: '650px',
-        width: '900px'
-      }
-    }
-
-    const getAttractionInfo = (event) => {
-      Axios.get("http://localhost:3003/getAttractionInfo", {
-        params: {
-          funId: event.currentTarget.dataset.funid
-        }
-      }).then((response) => {
-        setItemToShow(response.data[0])
-        setShowAttractionModal(true)
-      })
-    }
-
-    const removeAttraction = () => {
-      const fun = itemToShow.fun_id
+    const removeAttraction = (event) => {
+      const fun = event.currentTarget.dataset.funid
       Axios.delete(`http://localhost:3003/removeAttraction/${username}/${fun}`)
       .then(() => {
         setFunFolderItems(
           funFolderItems.filter((item) => {
-            return item.fun_id !== itemToShow.fun_id
+            return item.fun_id !== fun
           })
         )
-        setShowAttractionModal(false)
-        setItemToShow([])
       })
     }
 
-    const addToFavorites = () => {
+    const addToFavorites = (event) => {
       Axios.post("http://localhost:3003/addToFavorites/", {
         username: username,
-        fun_id: itemToShow.fun_id,
-        name: itemToShow.attraction_name
+        fun_id: event.currentTarget.dataset.funid,
+        name: event.currentTarget.dataset.name
       }).then(() => {
         setFavoritesItems([
           ...favoritesItems,
           {
-            fun_id: itemToShow.fun_id,
+            fun_id: event.currentTarget.dataset.funid,
             cwru_id: username,
-            attraction_name: itemToShow.attraction_name
+            attraction_name: event.currentTarget.dataset.name
           }
         ])
       })
@@ -96,7 +68,7 @@ function FunFolder( {username, setUsername, password,
       .then(() => {
         setFavoritesItems(
           favoritesItems.filter((item) => {
-            return item.fun_id !== event.target.value
+            return item.fun_id !== funId
           })
         )
       })
@@ -124,8 +96,30 @@ function FunFolder( {username, setUsername, password,
             <div className = "folderContent">
               {funFolderItems.map((item, index) => {
                 return (
-                <button key = {index} data-funid = {item.fun_id} onClick = {getAttractionInfo}><h6>{item.attraction_name}</h6>
-                </button>
+                  <div className = "funFolderItem" key = {index}>
+                    <h4>{item.attraction_name}</h4>
+                    <ul>
+                      <li>Type: {item.attraction_type}</li>
+                      <li>Location: {item.street_address} {item.city}, OH {item.zip_code}</li>
+                      <li>Opens at (Military Time): {item.opening_hour}</li>
+                      <li>Closes at (Military Time): {item.closing_hour}</li>
+                      <li>Do I need a mask? {item.mask_required}</li>
+                      <li>Rating out of 5: {item.rating}</li>
+                    </ul>
+                    <button 
+                      key = {index + 1} 
+                      data-funid = {item.fun_id} 
+                      onClick = {removeAttraction}>
+                      Remove from Fun Folder
+                    </button>
+                    <button 
+                      key = {index + 2} 
+                      data-funid = {item.fun_id}
+                      data-name = {item.attraction_name} 
+                      onClick = {addToFavorites}>
+                      Add to Favorites
+                    </button>
+                  </div>
                 )
               })}
             </div>
@@ -137,8 +131,16 @@ function FunFolder( {username, setUsername, password,
             <div className = "favoritesContent">
             {favoritesItems.map((item, index) => {
                 return (
-                <div key = {index} className = "favoritesCard">
-                  <h6>{item.attraction_name}</h6>  
+                <div key = {index} className = "favoritesItem">
+                  <h4>{item.attraction_name}</h4>
+                  <ul>
+                      <li>Type: {item.attraction_type}</li>
+                      <li>Location: {item.street_address} {item.city}, OH {item.zip_code}</li>
+                      <li>Opens at (Military Time): {item.opening_hour}</li>
+                      <li>Closes at (Military Time): {item.closing_hour}</li>
+                      <li>Do I need a mask? {item.mask_required}</li>
+                      <li>Rating out of 5: {item.rating}</li>
+                  </ul>  
                   <button key = {index + 1}
                           data-funid = {item.fun_id}
                           onClick = {removeFromFavorites}
@@ -151,33 +153,6 @@ function FunFolder( {username, setUsername, password,
             </div>
           </div>
         </div>
-        <Modal
-          style = {customStyles} 
-          className = "funModal"
-          isOpen = {showAttractionModal}
-          fade ={false}
-        >
-          <div className = "modalResults">
-            <h1>{itemToShow.attraction_name}</h1>
-            <ul>
-              <li>Type: {itemToShow.attraction_type}</li>
-              <li>Location: {itemToShow.street_address} {itemToShow.city}, OH {itemToShow.zip_code}</li>
-              <li>Opens at (Military Time): {itemToShow.opening_hour}</li>
-              <li>Closes at (Military Time): {itemToShow.closing_hour}</li>
-              <li>Do I need a mask? {itemToShow.mask_required}</li>
-              <li>Rating out of 5: {itemToShow.rating}</li>
-            </ul>
-          </div>
-          <button onClick = {() => setShowAttractionModal(false)}>
-            Close Attraction Information
-          </button>
-          <button onClick = {removeAttraction}>
-            Remove from Fun Folder
-          </button>
-          <button onClick = {addToFavorites}>
-            Add to Favorites
-          </button>
-        </Modal>
       </div>
     )
 }

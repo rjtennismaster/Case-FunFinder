@@ -89,7 +89,7 @@ app.post('/addToFavorites', (req, res) => {
         [funId, cwruId, name],
         (err, result) => {
             if (err) {
-                res.send({message: "You cannot add any more attractions to your favorite."})
+                res.send({message: "You cannot add any more attractions to your favorites."})
                 console.log(err)
             } else {
                 res.send(result)
@@ -122,7 +122,7 @@ app.get('/getFunFolder', (req, res) => {
     const username = req.query.username
 
     database.query(
-        "SELECT * FROM is_tracking WHERE cwru_id = ?",
+        "SELECT * FROM is_tracking NATURAL JOIN attractions WHERE cwru_id = ?",
         username,
         (err, result) => {
             if (err) {
@@ -138,24 +138,8 @@ app.get('/getFavorites', (req, res) => {
     const username = req.query.username
 
     database.query(
-        "SELECT * FROM is_favorite WHERE cwru_id = ?",
+        "SELECT * FROM is_favorite NATURAL JOIN attractions WHERE cwru_id = ?",
         username,
-        (err, result) => {
-            if (err) {
-                console.log(err)
-            } else {
-                res.send(result)
-            }
-        }
-    )
-})
-
-app.get('/getAttractionInfo', (req, res) => {
-    const funId = req.query.funId
-
-    database.query(
-        "SELECT * FROM attractions WHERE fun_id = ?",
-        funId,
         (err, result) => {
             if (err) {
                 console.log(err)
