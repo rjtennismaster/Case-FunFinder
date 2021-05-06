@@ -335,7 +335,7 @@ function MHSearch( {username, setUsername, password,
                     <li>Rating Out of 5: {museum.rating}</li>
                   </ul>
                 
-                  <h6>{museum.attraction_name} is hosting {museum.ename}</h6>
+                  <h6>{museum.attraction_name} is hosting "{museum.ename}" - {museum.synopsis}</h6>
                   <ul>
                     <li>When? {museum.opening_date} to {museum.closing_date}</li>
                     <li>At what Time? From {museum.eventOpening} to {museum.eventClosing}</li>

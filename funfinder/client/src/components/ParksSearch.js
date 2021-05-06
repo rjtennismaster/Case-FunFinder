@@ -343,7 +343,7 @@ function ParksSearch( {username, setUsername, password,
                   <li>Rating Out of 5: {park.rating}</li>
                 </ul>
               
-                <h6>{park.attraction_name} is hosting {park.ename}</h6>
+                <h6>{park.attraction_name} is hosting "{park.ename}" - {park.synopsis}</h6>
                 <ul>
                   <li>When? {park.opening_date} to {park.closing_date}</li>
                   <li>At what Time? From {park.eventOpening} to {park.eventClosing}</li>

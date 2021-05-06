@@ -311,13 +311,13 @@ function EventSearch( {username, setUsername, password,
 
         <br/>
         <Form className = "container" onSubmit = {eFoodRelated}>
-          <span>Show me food-related Events.</span>
+          <span>Show me Food-Related Events.</span>
           <br/>
           <button type = "submit">Find Events</button>
         </Form>
         <br/>
         <Form className = "container" onSubmit = {eSportsRelated}>
-          <span>Show me sports-related Events.</span>
+          <span>Show me Sports-Related Events.</span>
           <br/>
           <button type = "submit">Find Events</button>
         </Form>
@@ -338,6 +338,7 @@ function EventSearch( {username, setUsername, password,
                 key = {index}
               >
                 <h4>{e.ename}</h4>
+                <h6>{e.synopsis}</h6>
                 <ul>
                   <li>Location: {e.street_address} {e.city}, OH {e.zip_code}</li>
                   <li>Happening from {e.opening_date} to {e.closing_date}</li>

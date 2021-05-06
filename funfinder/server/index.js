@@ -243,7 +243,7 @@ app.get('/findEventfulRestaurants', (req, res) => {
 
     database.query(
         `SELECT A1.fun_id AS fun, A1.attraction_name, A1.street_address, A1.city, A1.zip_code, A1.opening_hour,
-         A1.closing_hour, A1.mask_required, A1.rating, E.ename, E.opening_date, E.closing_date, A2.opening_hour AS eventOpening, 
+         A1.closing_hour, A1.mask_required, A1.rating, E.ename, E.opening_date, E.closing_date, E.synopsis, A2.opening_hour AS eventOpening, 
          A2.closing_hour AS eventClosing, E.is_recurring FROM attractions A1, hosts H, events E, attractions A2 WHERE E.fun_id = H.event_being_hosted_fun_id 
          AND A1.fun_id = H.host_fun_id AND E.fun_id = A2.fun_id AND A1.attraction_type = 'restaurant'`,
         (err, result) => {
@@ -341,7 +341,7 @@ app.get('/findEventfulTheatres', (req, res) => {
 
     database.query(
         `SELECT A1.fun_id AS fun, A1.attraction_name, A1.street_address, A1.city, A1.zip_code,
-         A1.mask_required, A1.rating, E.ename, E.opening_date, E.closing_date, A2.opening_hour AS eventOpening, 
+         A1.mask_required, A1.rating, E.ename, E.opening_date, E.closing_date, E.synopsis, A2.opening_hour AS eventOpening, 
          A2.closing_hour AS eventClosing, E.is_recurring FROM attractions A1, hosts H, events E, attractions A2 WHERE E.fun_id = H.event_being_hosted_fun_id 
          AND A1.fun_id = H.host_fun_id AND E.fun_id = A2.fun_id AND A1.attraction_type = 'theatre'`,
         (err, result) => {
@@ -437,7 +437,7 @@ app.get('/findEventfulM', (req, res) => {
 
     database.query(
         `SELECT A1.fun_id AS fun, A1.attraction_name, A1.street_address, A1.city, A1.zip_code, A1.opening_hour,
-         A1.closing_hour, A1.mask_required, A1.rating, E.ename, E.opening_date, E.closing_date, A2.opening_hour AS eventOpening, 
+         A1.closing_hour, A1.mask_required, A1.rating, E.ename, E.opening_date, E.closing_date, E.synopsis, A2.opening_hour AS eventOpening, 
          A2.closing_hour AS eventClosing, E.is_recurring FROM attractions A1, hosts H, events E, attractions A2 WHERE E.fun_id = H.event_being_hosted_fun_id 
          AND A1.fun_id = H.host_fun_id AND E.fun_id = A2.fun_id AND A1.attraction_type = 'museum/historical site'`,
         (err, result) => {
@@ -571,6 +571,143 @@ app.get('/pWDuckPond', (req, res) => {
     )
 })
 
+app.get('/findEventfulP', (req, res) => {
+
+    database.query(
+        `SELECT A1.fun_id AS fun, A1.attraction_name, A1.street_address, A1.city, A1.zip_code,
+         A1.mask_required, A1.rating, E.ename, E.opening_date, E.closing_date, E.synopsis, A2.opening_hour AS eventOpening, 
+         A2.closing_hour AS eventClosing, E.is_recurring FROM attractions A1, hosts H, events E, attractions A2 WHERE E.fun_id = H.event_being_hosted_fun_id 
+         AND A1.fun_id = H.host_fun_id AND E.fun_id = A2.fun_id AND A1.attraction_type = 'park'`,
+        (err, result) => {
+            if (err) {
+                console.log(err)
+            } else {
+                res.send(result)
+            }
+        }
+    )
+})
+
+app.get('/getEGeneral', (req, res) => {
+    const city = req.query.city
+    const openingHour = req.query.openingHour
+    const closingHour = req.query.closingHour
+    const maskRequired = req.query.maskRequired
+    const isRecurring = req.query.isRecurring
+
+    database.query(
+        "SELECT * FROM events E NATURAL JOIN attractions A WHERE A.city = ? AND A.opening_hour >= ? AND A.closing_hour <= ? AND A.mask_required = ? AND E.is_recurring = ?",
+        [city, openingHour, closingHour, maskRequired, isRecurring],
+        (err, result) => {
+            if (err) {
+                console.log(err)
+            } else {
+                res.send(result)
+            }
+        }
+    )
+})
+
+app.get('/getAllE', (req, res) => {
+    database.query(
+        "SELECT * FROM attractions A NATURAL JOIN events E",
+        (err, result) => {
+            if (err) {
+                console.log(err)
+            } else {
+                res.send(result)
+            }
+        }
+    )
+})
+
+app.get('/getEByName', (req, res) => {
+    const eName = req.query.eName
+
+    database.query(
+        "SELECT * FROM attractions A NATURAL JOIN events E WHERE E.ename = ?",
+        eName,  
+        (err, result) => {
+            if (err) {
+                console.log(err)
+            } else {
+                res.send(result)
+            }
+        }
+    )
+})
+
+app.get('/getEByZipCode', (req, res) => {
+    const eZipcode = req.query.eZipcode
+
+    database.query(
+        "SELECT * FROM attractions A NATURAL JOIN events E WHERE A.zip_code = ?",
+        eZipcode,  
+        (err, result) => {
+            if (err) {
+                console.log(err)
+            } else {
+                res.send(result)
+            }
+        }
+    )
+})
+
+app.get('/eChildFriendly', (req, res) => {
+
+    database.query(
+        "SELECT * FROM attractions A NATURAL JOIN events E WHERE E.is_child_friendly = 'Y'",
+        (err, result) => {
+            if (err) {
+                console.log(err)
+            } else {
+                res.send(result)
+            }
+        }
+    )
+})
+
+app.get('/eMusicRelated', (req, res) => {
+
+    database.query(
+        "SELECT * FROM attractions A NATURAL JOIN events E WHERE E.is_music_related = 'Y'",
+        (err, result) => {
+            if (err) {
+                console.log(err)
+            } else {
+                res.send(result)
+            }
+        }
+    )
+})
+
+app.get('/eFoodRelated', (req, res) => {
+
+    database.query(
+        "SELECT * FROM attractions A NATURAL JOIN events E WHERE E.is_food_related = 'Y'",
+        (err, result) => {
+            if (err) {
+                console.log(err)
+            } else {
+                res.send(result)
+            }
+        }
+    )
+})
+
+app.get('/eSportsRelated', (req, res) => {
+
+    database.query(
+        "SELECT * FROM attractions A NATURAL JOIN events E WHERE E.is_sports_related = 'Y'",
+        (err, result) => {
+            if (err) {
+                console.log(err)
+            } else {
+                res.send(result)
+            }
+        }
+    )
+})
 
 app.delete('/removeAttraction/:username/:fun', (req, res) => {
     const username = req.params.username
@@ -599,23 +736,6 @@ app.delete('/removeFromFavorites/:username/:funId', (req, res) => {
             res.send(result)
         }
     }
-    )
-})
-
-app.get('/findEventfulP', (req, res) => {
-
-    database.query(
-        `SELECT A1.fun_id AS fun, A1.attraction_name, A1.street_address, A1.city, A1.zip_code,
-         A1.mask_required, A1.rating, E.ename, E.opening_date, E.closing_date, A2.opening_hour AS eventOpening, 
-         A2.closing_hour AS eventClosing, E.is_recurring FROM attractions A1, hosts H, events E, attractions A2 WHERE E.fun_id = H.event_being_hosted_fun_id 
-         AND A1.fun_id = H.host_fun_id AND E.fun_id = A2.fun_id AND A1.attraction_type = 'park'`,
-        (err, result) => {
-            if (err) {
-                console.log(err)
-            } else {
-                res.send(result)
-            }
-        }
     )
 })
 

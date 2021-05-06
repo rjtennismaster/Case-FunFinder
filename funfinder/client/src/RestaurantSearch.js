@@ -361,7 +361,7 @@ function RestaurantSearch( {username, setUsername, password,
                   <li>Rating Out of 5: {restaurant.rating}</li>
                 </ul>
               
-                <h6>{restaurant.attraction_name} is hosting {restaurant.ename}</h6>
+                <h6>{restaurant.attraction_name} is hosting "{restaurant.ename}" - {restaurant.synopsis}</h6>
                 <ul>
                   <li>When? {restaurant.opening_date} to {restaurant.closing_date}</li>
                   <li>At what Time? From {restaurant.eventOpening} to {restaurant.eventClosing}</li>

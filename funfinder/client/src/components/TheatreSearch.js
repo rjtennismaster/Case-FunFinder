@@ -296,7 +296,7 @@ function TheatreSearch( {username, setUsername, password,
                   <li>Rating Out of 5: {theatre.rating}</li>
                 </ul>
               
-                <h6>{theatre.attraction_name} is hosting {theatre.ename}</h6>
+                <h6>{theatre.attraction_name} is hosting "{theatre.ename}" - {theatre.synopsis}</h6>
                 <ul>
                   <li>When? {theatre.opening_date} to {theatre.closing_date}</li>
                   <li>At what Time? From {theatre.eventOpening} to {theatre.eventClosing}</li>
