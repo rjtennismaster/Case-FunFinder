@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 function HomeBody() {
     return (
-      <div role="main" className ="container">
+      <div className = "introContainer">
         <div className="jumbotron">
           <h1>Let's have some Fun CWRU</h1>
           <p className ="lead">Search for fun things to do around the Cleveland area!</p>

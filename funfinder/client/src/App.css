@@ -62,3 +62,8 @@
   color: white;
   left: 59%;
 }
+
+.introContainer {
+  display: flex;
+  justify-content: space-around;
+}
