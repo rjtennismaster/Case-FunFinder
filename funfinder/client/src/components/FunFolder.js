@@ -35,14 +35,28 @@ function FunFolder( {username, setUsername, password,
       })
     })
 
+    const customStyles = {
+      content : {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        padding: '150px',
+        border: '2px solid black',
+        transform: 'translate(-50%, -50%)',
+        background: '#FFD700'
+      }
+    }
 
     const getAttractionInfo = (event) => {
       Axios.get("http://localhost:3003/getAttractionInfo", {
         params: {
-          funId: event.target.value
+          funId: event.currentTarget.dataset.funid
         }
       }).then((response) => {
         setItemToShow(response.data[0])
+        setShowAttractionModal(true)
       })
     }
 
@@ -56,6 +70,7 @@ function FunFolder( {username, setUsername, password,
           })
         )
         setShowAttractionModal(false)
+        setItemToShow([])
       })
     }
 
@@ -77,7 +92,7 @@ function FunFolder( {username, setUsername, password,
     }
 
     const removeFromFavorites = (event) => {
-      const funId = event.target.value
+      const funId = event.currentTarget.dataset.funid
       Axios.delete(`http://localhost:3003/removeFromFavorites/${username}/${funId}`)
       .then(() => {
         setFavoritesItems(
@@ -110,9 +125,7 @@ function FunFolder( {username, setUsername, password,
             <div className = "folderContent">
               {funFolderItems.map((item, index) => {
                 return (
-                <button key = {index} value = {item.fun_id} onClick = {(event) =>  {getAttractionInfo(event)
-                  setShowAttractionModal(true)}
-                }><h6>{item.attraction_name}</h6>
+                <button key = {index} data-funid = {item.fun_id} onClick = {getAttractionInfo}><h6>{item.attraction_name}</h6>
                 </button>
                 )
               })}
@@ -127,9 +140,9 @@ function FunFolder( {username, setUsername, password,
                 return (
                 <div key = {index} className = "favoritesCard">
                   <h6>{item.attraction_name}</h6>  
-                  <button key = {index}
-                          value = {item.fun_id}
-                          onClick = {(event) => removeFromFavorites(event)}
+                  <button key = {index + 1}
+                          data-funid = {item.fun_id}
+                          onClick = {removeFromFavorites}
                           >
                             Remove from Favorites
                   </button>
@@ -139,7 +152,8 @@ function FunFolder( {username, setUsername, password,
             </div>
           </div>
         </div>
-        <Modal 
+        <Modal
+          style = {customStyles} 
           className = "funModal"
           isOpen = {showAttractionModal}
           fade ={false}

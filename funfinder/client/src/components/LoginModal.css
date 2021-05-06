@@ -64,6 +64,8 @@
     font-weight: bold;
     display: flex;
     justify-content: center;
-    position: relative;
-    top: 100px;
+    position: absolute;
+    bottom: 20px;
+    font-size: 20px;
+    right: 178px;
 }
