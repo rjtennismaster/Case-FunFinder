@@ -163,7 +163,7 @@ function RestaurantSearch( {username, setUsername, password,
               <option>Select a City</option>
               <option value = "Cleveland">Cleveland</option>
             </select>
-            <span> that are open between the hours of </span>
+            <span> that are open between the Hours of </span>
             <select value = {rOpening}
                     onChange = {(event) => setROpening(event.target.value)}
                     name = "rgenoptime"
@@ -227,7 +227,7 @@ function RestaurantSearch( {username, setUsername, password,
               <option value = "2300">23:00</option>
               <option value = "2400">24:00</option>
             </select>
-            <span>. Their mask requirement should be </span>
+            <span>Their Mask Requirement should be </span>
             <select value = {rMaskReq} 
                     onChange = {(event) => setRMaskReq(event.target.value)}
                     name = "rgenmaskreq"
@@ -236,7 +236,7 @@ function RestaurantSearch( {username, setUsername, password,
               <option value = "Y">Requires Mask</option>
               <option value = "N">Does not Require Mask</option>
             </select>
-            <span>, and their rating should be at least </span>
+            <span>and their Rating should be at least </span>
             <select value = {rRating} 
                     onChange = {(event) => setRRating(event.target.value)}
                     name = "rgenrating"
@@ -255,7 +255,7 @@ function RestaurantSearch( {username, setUsername, password,
 
           <br/>
           <Form className = "container" onSubmit = {(event) => getAllRestaurants(event)}>
-            <span>Show me All the Restaurants!</span>
+            <span>Show me ALL of the Restaurants!</span>
             <br/>
             <button type = "submit">Find Restaurants</button>
           </Form>
@@ -294,32 +294,34 @@ function RestaurantSearch( {username, setUsername, password,
           <br/>
 
           <Form className = "container" onSubmit = {findVegetarian}>
-              <span>Show me Restaurants that Offer Vegetarian Options.</span>
+              <span>Show me Restaurants that offer Vegetarian Options.</span>
               <br/>
             <button type = "submit">Find Restaurants</button>
           </Form>
           <br/>
           <Form className = "container" onSubmit = {findVegan}>
-              <span>Show me Restaurants that Offer Vegan Options.</span>
+              <span>Show me Restaurants that offer Vegan Options.</span>
               <br/>
             <button type = "submit">Find Restaurants</button>
           </Form>
 
           <br/>
           <Form className = "container" onSubmit = {findEventfulRestaurants}>
-            <span>Which Restaurants are hosting events? Show Me a Short Synposis of the Event Information.</span>
+            <span>Which Restaurants are hosting Events? Provide me with a short Synposis of the Event Information.</span>
             <br/>
             <button type = "submit">Find Restaurants</button>
           </Form>
-          <div className = "resultsContainer">
-            <h3>Results</h3>
-            <button 
+            <div className = "resultsTitleContainer">
+              <h2 className = "resultsHeader">Results</h2>
+              <button 
               onClick = {() => {
                 setRResultsGeneral([])
                 setREventResults([])
               }}>
                 Clear Results
             </button>
+            </div>
+
             <h6>{successfulAdd}</h6>
             {rResultsGeneral.map((restaurant, index) => {
               return (
@@ -368,7 +370,7 @@ function RestaurantSearch( {username, setUsername, password,
                   <ul>
                     <li>When? {restaurant.opening_date} to {restaurant.closing_date}</li>
                     <li>At what Time? From {restaurant.eventOpening} to {restaurant.eventClosing}</li>
-                    <li>Will this event ever happen again? {restaurant.is_recurring}</li>
+                    <li>Will this Event ever happen again? {restaurant.is_recurring}</li>
                   </ul>
                   <button 
                     key = {index + 1}
@@ -380,7 +382,6 @@ function RestaurantSearch( {username, setUsername, password,
                 </div>
               )
             })}
-          </div>
         </div>
       </div>
       )

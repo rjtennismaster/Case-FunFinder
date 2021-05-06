@@ -136,7 +136,10 @@ function MHSearch( {username, setUsername, password,
             setShowWelcomeModal = {setShowWelcomeModal}
           />
           
-          <h1>Search Museums and Historical Sites</h1>
+          <div className = "pageContainer">
+          <div className = "searchTitleContainer">
+            <h1 className = "searchHeaderM">Search Museums and Historical Sites</h1>
+          </div>
           <Form className = "container" onSubmit = {(event) => getMGeneral(event)}>
             <span>Show me Museums and Historical sites in </span>
             <select value = {mCity} 
@@ -351,6 +354,7 @@ function MHSearch( {username, setUsername, password,
                 </div>
               )
             })}
+          </div>
           </div>
         </div>
         )

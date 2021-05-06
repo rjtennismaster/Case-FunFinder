@@ -137,7 +137,10 @@ function TheatreSearch( {username, setUsername, password,
           setShowWelcomeModal = {setShowWelcomeModal}
         />
 
-        <h1>Search Theatres</h1>
+        <div className = "pageContainer">
+          <div className = "searchTitleContainer">
+            <h1 className = "searchHeader">Search Theatres</h1>
+          </div>
         <Form className = "container" onSubmit = {(event) => getTheatresGeneral(event)}>
           
           <span>Show me Theatres in </span>
@@ -312,6 +315,7 @@ function TheatreSearch( {username, setUsername, password,
               </div>
             )
           })}
+        </div>
         </div>
       </div>
       )
