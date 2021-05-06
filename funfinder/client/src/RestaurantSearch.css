@@ -68,7 +68,6 @@
 }
 
 .container {
-    margin: 30px;
     width: 700px;
     height: auto;
     border: 4px solid black;
@@ -117,9 +116,9 @@
 }
 
 .container select {
-    width: 100%;
+    width: 60%;
 }
 
 .container input {
-    width: 100%;
+    width: 60%;
 }

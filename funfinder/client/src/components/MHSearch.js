@@ -350,7 +350,7 @@ function MHSearch( {username, setUsername, password,
                     onClick = {(event) => addToFunFolder(event)}
                     data-funid = {museum.fun}
                     data-name = {museum.attraction_name}>
-                      Add this Mueseum/Historical Site to your Fun Folder!
+                      Add to your Fun Folder!
                   </button>
                 </div>
               )
