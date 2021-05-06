@@ -135,7 +135,7 @@ function EventSearch( {username, setUsername, password,
     const addToFunFolder = (event) => {
       Axios.post("http://localhost:3003/addToFunFolder", {
         cwruId: username,
-        funId: event.currentTarget.dataset.funId,
+        funId: event.currentTarget.dataset.funid,
         name: event.currentTarget.dataset.name
       }).then((response) => {
         setSuccessfulAdd(response.data.message)
@@ -352,9 +352,9 @@ function EventSearch( {username, setUsername, password,
                   <li>Do I Need to Wear a Mask? {e.mask_required}</li>
                 </ul>
                 <button 
-                  key = {index}
+                  key = {index + 1}
                   onClick = {(event) => addToFunFolder(event)}
-                  data-funId = {e.fun_id}
+                  data-funid = {e.fun_id}
                   data-name = {e.attraction_name}
                   >Add to your Fun Folder!
                 </button>

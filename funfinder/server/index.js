@@ -72,11 +72,12 @@ app.post('/addToFunFolder', (req, res) => {
                 res.send({message: "You cannot add any more attractions to your fun folder."})
                 console.log(err)
             } else {
-                res.send({message: "Restaurant Added to Fun Folder!"})
+                res.send({message: "Added to Fun Folder!"})
             }
         }
     )
 })
+
 
 app.post('/addToFavorites', (req, res) => {
     const cwruId = req.body.username

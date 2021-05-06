@@ -111,7 +111,7 @@ function MHSearch( {username, setUsername, password,
       const addToFunFolder = (event) => {
         Axios.post("http://localhost:3003/addToFunFolder", {
           cwruId: username,
-          funId: event.currentTarget.dataset.funId,
+          funId: event.currentTarget.dataset.funid,
           name: event.currentTarget.dataset.name
         }).then((response) => {
           setSuccessfulAdd(response.data.message)
@@ -313,7 +313,7 @@ function MHSearch( {username, setUsername, password,
                   <button 
                     key = {index}
                     onClick = {(event) => addToFunFolder(event)}
-                    data-funId = {museum.fun_id}
+                    data-funid = {museum.fun_id}
                     data-name = {museum.attraction_name}
                     >Add to your Fun Folder!
                   </button>
@@ -342,9 +342,9 @@ function MHSearch( {username, setUsername, password,
                     <li>Will this event ever happen again? {museum.is_recurring}</li>
                   </ul>
                   <button 
-                    key = {index}
+                    key = {index + 1}
                     onClick = {(event) => addToFunFolder(event)}
-                    data-funId = {museum.fun}
+                    data-funid = {museum.fun}
                     data-name = {museum.attraction_name}>
                       Add this Mueseum/Historical Site to your Fun Folder!
                   </button>

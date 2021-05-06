@@ -112,7 +112,7 @@ function TheatreSearch( {username, setUsername, password,
     const addToFunFolder = (event) => {
       Axios.post("http://localhost:3003/addToFunFolder", {
         cwruId: username,
-        funId: event.currentTarget.dataset.funId,
+        funId: event.currentTarget.dataset.funid,
         name: event.currentTarget.dataset.name
       }).then((response) => {
         setSuccessfulAdd(response.data.message)
@@ -276,7 +276,7 @@ function TheatreSearch( {username, setUsername, password,
                 <button 
                   key = {index}
                   onClick = {(event) => addToFunFolder(event)}
-                  data-funId = {theatre.fun_id}
+                  data-funid = {theatre.fun_id}
                   data-name = {theatre.attraction_name}>
                     Add to your Fun Folder!
                 </button>
@@ -303,9 +303,9 @@ function TheatreSearch( {username, setUsername, password,
                   <li>Will this event ever happen again? {theatre.is_recurring}</li>
                 </ul>
                 <button 
-                  key = {index} 
+                  key = {index + 1} 
                   onClick = {(event) => addToFunFolder(event)}
-                  data-funId = {theatre.fun}
+                  data-funid = {theatre.fun}
                   data-name = {theatre.attraction_name}>
                     Add this Theatre to your Fun Folder!
                 </button>

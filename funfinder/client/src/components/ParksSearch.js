@@ -144,9 +144,10 @@ function ParksSearch( {username, setUsername, password,
     }
 
     const addToFunFolder = (event) => {
+        console.log("This is the fun id" + event.currentTarget.dataset.funid)
       Axios.post("http://localhost:3003/addToFunFolder", {
         cwruId: username,
-        funId: event.currentTarget.dataset.funId,
+        funId: event.currentTarget.dataset.funid,
         name: event.currentTarget.dataset.name
       }).then((response) => {
         setSuccessfulAdd(response.data.message)
@@ -320,10 +321,11 @@ function ParksSearch( {username, setUsername, password,
                   <li>Do I Need to Wear a Mask? {park.mask_required}</li>
                   <li>Rating Out of 5: {park.rating}</li>
                 </ul>
+                {console.log(park)}
                 <button 
                   key = {index}
                   onClick = {(event) => addToFunFolder(event)}
-                  data-funId = {park.fun_id}
+                  data-funid = {park.fun_id}
                   data-name = {park.attraction_name}>
                     Add to your Fun Folder!
                 </button>
@@ -350,9 +352,9 @@ function ParksSearch( {username, setUsername, password,
                   <li>Will this event ever happen again? {park.is_recurring}</li>
                 </ul>
                 <button 
-                  key = {index} 
+                  key = {index + 1} 
                   onClick = {(event) => addToFunFolder(event)}
-                  data-funId = {park.fun}
+                  data-funid = {park.fun}
                   data-name = {park.attraction_name}>
                     Add this Park to your Fun Folder!
                 </button>

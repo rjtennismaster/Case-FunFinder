@@ -125,7 +125,7 @@ function RestaurantSearch( {username, setUsername, password,
     const addToFunFolder = (event) => {
       Axios.post("http://localhost:3003/addToFunFolder", {
         cwruId: username,
-        funId: event.currentTarget.dataset.funId,
+        funId: event.currentTarget.dataset.funid,
         name: event.currentTarget.dataset.name
       }).then((response) => {
         setSuccessfulAdd(response.data.message)
@@ -339,7 +339,7 @@ function RestaurantSearch( {username, setUsername, password,
                 <button 
                   key = {index}
                   onClick = {(event) => addToFunFolder(event)}
-                  data-funId = {restaurant.fun_id}
+                  data-funid = {restaurant.fun_id}
                   data-name = {restaurant.attraction_name}
                   >Add to your Fun Folder!
                 </button>
@@ -368,9 +368,9 @@ function RestaurantSearch( {username, setUsername, password,
                   <li>Will this event ever happen again? {restaurant.is_recurring}</li>
                 </ul>
                 <button 
-                  key = {index}
+                  key = {index + 1}
                   onClick = {(event) => addToFunFolder(event)}
-                  data-funId = {restaurant.fun}
+                  data-funid = {restaurant.fun}
                   data-name = {restaurant.attraction_name}>
                     Add this Restaurant to your Fun Folder!
                 </button>
