@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import NavBar from "./Navbar"
 import Axios from "axios"
+import './FunFolder.css'
 
 
 function FunFolder( {username, setUsername, password, 
@@ -31,7 +32,7 @@ function FunFolder( {username, setUsername, password,
             return funItem
           }))
       })
-    })
+    }, [])
 
     const removeAttraction = (event) => {
       const fun = event.currentTarget.dataset.funid
@@ -106,14 +107,17 @@ function FunFolder( {username, setUsername, password,
                       <li>Do I need a mask? {item.mask_required}</li>
                       <li>Rating out of 5: {item.rating}</li>
                     </ul>
-                    <button 
-                      key = {index * 100} 
+                  
+                    <button
+                      className = "folderRemoveB" 
+                      key = {index * 123} 
                       data-funid = {item.fun_id} 
                       onClick = {removeAttraction}>
                       Remove from Fun Folder
                     </button>
                     <button 
-                      key = {index * 200} 
+                      className = "folderAddB"
+                      key = {index * 456} 
                       data-funid = {item.fun_id}
                       data-name = {item.attraction_name} 
                       onClick = {addToFavorites}>
@@ -131,7 +135,7 @@ function FunFolder( {username, setUsername, password,
             <div className = "favoritesContent">
             {favoritesItems.map((item, index) => {
                 return (
-                <div key = {index * 300} className = "favoritesItem">
+                <div key = {index * 789} className = "favoritesItem">
                   <h4>{item.attraction_name}</h4>
                   <ul>
                       <li>Type: {item.attraction_type}</li>
@@ -141,7 +145,8 @@ function FunFolder( {username, setUsername, password,
                       <li>Do I need a mask? {item.mask_required}</li>
                       <li>Rating out of 5: {item.rating}</li>
                   </ul>  
-                  <button key = {index * 400}
+                  <button key = {index * 147}
+                          className = "favRemoveB"
                           data-funid = {item.fun_id}
                           onClick = {removeFromFavorites}
                           >

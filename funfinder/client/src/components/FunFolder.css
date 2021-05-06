@@ -1,0 +1,93 @@
+.bigContainer {
+    display: flex;
+    justify-content: space-around;
+}
+
+.funFolderContainer {
+    border: 4px solid black;
+    padding: 25px;
+    height: auto;
+}
+
+.favoritesContainer {
+    border: 5px solid black;
+    padding: 25px;
+    height: auto;
+}
+
+.folderTitle {
+    display: flex;
+    justify-content: center;
+    background-color: #1E90FF;
+    margin: -25px;
+    margin-bottom: 15px;
+    padding: 5px;
+}
+
+.favoritesTitle {
+    display: flex;
+    justify-content: center;
+    background-color: #1E90FF;
+    margin: -25px;
+    margin-bottom: 15px;
+    padding: 5px;
+}
+
+.folderContent {
+    background-color: slategrey;
+    margin: -25px;
+    padding: 20px;
+    height: 99.5%;
+}
+
+.favoritesContent {
+    background-color: slategrey;
+    margin: -25px;
+    padding: 20px;
+    height: 99.5%;
+}
+
+.funFolderItem {
+    margin: 20px;
+    height: auto;
+    border: 4px solid black;
+    padding: 10px;
+    background-color: #f0ec17;
+    border-radius: 10px;
+}
+
+.favoritesItem {
+    margin: 20px;
+    height: auto;
+    border: 4px solid black;
+    padding: 10px;
+    background-color: #f04527;
+    border-radius: 10px;
+}
+
+.folderRemoveB {
+    position: relative;
+    left: 10px;
+    height: 33px;
+    background-color: #00008B;
+    color: white;
+    border-radius: 14px;
+}
+
+.folderAddB {
+    position: relative;
+    left: 40px;
+    height: 33px;
+    background-color: #00008B;
+    color: white;
+    border-radius: 14px;
+}
+
+.favRemoveB {
+    position: relative;
+    background-color: #00008B;
+    color: white;
+    border-radius: 14px;
+    height: 33px;
+    left: 98px;
+}
