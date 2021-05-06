@@ -10,7 +10,7 @@
 
 #button1 {
     position: absolute;
-    background-color: #4CAF50; 
+    background-color: #A9A9A9; 
     border: none;
     color: white;
     text-align: center;
@@ -20,13 +20,13 @@
     border-radius: 50%;
     width: 90px;
     height: 60px;
-    top: 50%;
-    left: 44%;
+    top: 45%;
+    left: 46%;
 }
 
 #button2 {
     position: absolute;
-    background-color: #4CAF50; 
+    background-color: #A9A9A9; 
     border: none;
     color: white;
     text-align: center;
@@ -35,7 +35,7 @@
     cursor: pointer;
     border-radius: 50%;
     top: 70%;
-    left: 44%;
+    left: 46%;
     width: 90px;
     height: 60px;
 }

@@ -17,7 +17,7 @@ function WelcomeModal({ showWelcomeModal, setShowWelcomeModal, setShowLoginModal
           padding: '150px',
           border: '2px solid black',
           transform: 'translate(-50%, -50%)',
-          background: '#FFD700'
+          background: '#1E90FF'
         }
     }
     
