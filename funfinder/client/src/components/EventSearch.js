@@ -160,7 +160,10 @@ function EventSearch( {username, setUsername, password,
           setShowWelcomeModal = {setShowWelcomeModal}
         />
         
-        <h1>Search Events</h1>
+        <div className = "pageContainer">
+          <div className = "searchTitleContainer">
+            <h1 className = "searchHeaderE">Search Events</h1>
+          </div>
         <Form className = "container" onSubmit = {(event) => getEGeneral(event)}>
           <span>Show me Events in </span>
           <select value = {eCity} 
@@ -171,7 +174,7 @@ function EventSearch( {username, setUsername, password,
             <option value = "Cleveland">Cleveland</option>
             <option value = "Brooklyn">Brooklyn</option>
           </select>
-          <span> that take place between the hours of </span>
+          <span>that take place between the Hours of </span>
           <select value = {eOpening}
                   onChange = {(event) => setEOpening(event.target.value)}
                   name = "egenoptime"
@@ -235,7 +238,7 @@ function EventSearch( {username, setUsername, password,
             <option value = "2300">23:00</option>
             <option value = "2400">24:00</option>
           </select>
-          <span>. Their mask requirement should be </span>
+          <span>Their Mask Requirement should be </span>
           <select value = {eMaskReq} 
                   onChange = {(event) => setEMaskReq(event.target.value)}
                   name = "egenmaskreq"
@@ -244,7 +247,7 @@ function EventSearch( {username, setUsername, password,
             <option value = "Y">Requires Mask</option>
             <option value = "N">Does not Require Mask</option>
           </select>
-          <span>, and they should be </span>
+          <span>and they should be </span>
           <select value = {isRecurring} 
                   onChange = {(event) => setIsRecurring(event.target.value)}
                   name = "erecurring"
@@ -259,7 +262,7 @@ function EventSearch( {username, setUsername, password,
 
         <br/>
         <Form className = "container" onSubmit = {(event) => getAllE(event)}>
-          <span>Show me All the Events!</span>
+          <span>Show me ALL the Events!</span>
           <br/>
           <button type = "submit">Find Events</button>
         </Form>
@@ -322,14 +325,15 @@ function EventSearch( {username, setUsername, password,
           <button type = "submit">Find Events</button>
         </Form>
 
-        <div className = "resultsContainer">
-          <h3>Results</h3>
+        <div className = "resultsTitleContainer">
+          <h2 className = "resultsHeader">Results</h2>
           <button 
             onClick = {() => {
               setEResultsGeneral([])
             }}>
               Clear Results
           </button>
+        </div>
           <h6>{successfulAdd}</h6>
           {eResultsGeneral.map((e, index) => {
             return (
@@ -342,14 +346,14 @@ function EventSearch( {username, setUsername, password,
                 <ul>
                   <li>Location: {e.street_address} {e.city}, OH {e.zip_code}</li>
                   <li>Happening from {e.opening_date} to {e.closing_date}</li>
-                  <li>Starts At (Military Time): {e.opening_hour}</li>
-                  <li>Ends At (Military Time): {e.closing_hour}</li>
-                  <li>Will this Event Happen ever again? {e.is_recurring}</li>
+                  <li>Starts at (Military Time): {e.opening_hour}</li>
+                  <li>Ends at (Military Time): {e.closing_hour}</li>
+                  <li>Will this Event happen ever again? {e.is_recurring}</li>
                   <li>Child-Friendly? {e.is_child_friendly}</li>
                   <li>Music-Related? {e.is_music_related}</li>
                   <li>Food-Related? {e.is_food_related}</li>
                   <li>Sports-Related? {e.is_sports_related}</li>
-                  <li>Do I Need to Wear a Mask? {e.mask_required}</li>
+                  <li>Do I need to wear a Mask? {e.mask_required}</li>
                 </ul>
                 <button 
                   key = {index + 1}

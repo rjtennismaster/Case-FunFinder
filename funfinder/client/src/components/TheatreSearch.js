@@ -4,6 +4,7 @@ import Axios from "axios"
 import { Form } from "react-bootstrap"
 
 
+
 function TheatreSearch( {username, setUsername, password, 
   setPassword, setLoginStatus, 
   firstName, setFirstName, lastName, setLastName,
@@ -139,7 +140,7 @@ function TheatreSearch( {username, setUsername, password,
 
         <div className = "pageContainer">
           <div className = "searchTitleContainer">
-            <h1 className = "searchHeader">Search Theatres</h1>
+            <h1 className = "searchHeaderT">Search Theatres</h1>
           </div>
         <Form className = "container" onSubmit = {(event) => getTheatresGeneral(event)}>
           
@@ -174,7 +175,7 @@ function TheatreSearch( {username, setUsername, password,
             <option value = "Y">should</option>
             <option value = "N">should not</option>
           </select>
-          <span> sell popcorn. Their mask requirement should be </span>
+          <span> sell popcorn. Their Mask Requirement should be </span>
           <select value = {tMaskReq} 
                   onChange = {(event) => setTMaskReq(event.target.value)}
                   name = "tgenmaskreq"
@@ -183,7 +184,7 @@ function TheatreSearch( {username, setUsername, password,
             <option value = "Y">Requires Mask</option>
             <option value = "N">Does not Require Mask</option>
           </select>
-          <span>, and their rating should be at least </span>
+          <span>and their Rating should be at least </span>
           <select value = {tRating} 
                   onChange = {(event) => setTRating(event.target.value)}
                   name = "tgenrating"
@@ -195,14 +196,14 @@ function TheatreSearch( {username, setUsername, password,
             <option value = "4.0">4</option>
             <option value = "5.0">5</option>
           </select>
-          <span> out of 5 stars.</span>
+          <span> out of 5 Stars.</span>
           <br/>
           <button type = "submit">Find Theatres</button>
         </Form>
 
         <br/>
         <Form className = "container" onSubmit = {(event) => getAllTheatres(event)}>
-          <span>Show me All the Theatres!</span>
+          <span>Show me ALL the Theatres!</span>
           <br/>
           <button type = "submit">Find Theatres</button>
         </Form>
@@ -247,12 +248,12 @@ function TheatreSearch( {username, setUsername, password,
         </Form>
         <br/>
         <Form className = "container" onSubmit = {findEventfulTheatres}>
-          <span>Which Theatres are hosting events? Show Me a Short Synposis of the Event Information.</span>
+          <span>Which Theatres are hosting Events? Provide me with a short Synposis of the Event Information.</span>
           <br/>
           <button type = "submit">Find Theatres</button>
         </Form>
-        <div className = "resultsContainer">
-          <h3>Results</h3>
+        <div className = "resultsTitleContainer">
+          <h2 className = "resultsHeader">Results</h2>
           <button 
             onClick = {() => {
               setTResultsGeneral([])
@@ -260,6 +261,7 @@ function TheatreSearch( {username, setUsername, password,
             }}>
               Clear Results
           </button>
+        </div>
           <h6>{successfulAdd}</h6>
           {tResultsGeneral.map((theatre, index) => {
             return (
@@ -272,8 +274,8 @@ function TheatreSearch( {username, setUsername, password,
                   <li>Location: {theatre.street_address} {theatre.city}, OH {theatre.zip_code}</li>
                   <li>Capacity Limit: {theatre.number_seats}</li>
                   <li>Do I Need to Wear a Mask? {theatre.mask_required}</li>
-                  <li>Will popcorn be sold? {theatre.sells_popcorn}</li>
-                  <li>Top Program Showing: {theatre.top_program_showing}</li>
+                  <li>Will pPopcorn be Sold? {theatre.sells_popcorn}</li>
+                  <li>Top Program showing: {theatre.top_program_showing}</li>
                   <li>Rating Out of 5: {theatre.rating}</li>
                 </ul>
                 <button 
@@ -295,7 +297,7 @@ function TheatreSearch( {username, setUsername, password,
                 <h4>{theatre.attraction_name}</h4>
                 <ul>
                   <li>Location: {theatre.street_address} {theatre.city}, OH {theatre.zip_code}</li>
-                  <li>Do I Need to Wear a Mask? {theatre.mask_required}</li>
+                  <li>Do I need to wear a Mask? {theatre.mask_required}</li>
                   <li>Rating Out of 5: {theatre.rating}</li>
                 </ul>
               
@@ -303,7 +305,7 @@ function TheatreSearch( {username, setUsername, password,
                 <ul>
                   <li>When? {theatre.opening_date} to {theatre.closing_date}</li>
                   <li>At what Time? From {theatre.eventOpening} to {theatre.eventClosing}</li>
-                  <li>Will this event ever happen again? {theatre.is_recurring}</li>
+                  <li>Will this Event ever happen again? {theatre.is_recurring}</li>
                 </ul>
                 <button 
                   key = {index + 1} 
@@ -315,7 +317,6 @@ function TheatreSearch( {username, setUsername, password,
               </div>
             )
           })}
-        </div>
         </div>
       </div>
       )

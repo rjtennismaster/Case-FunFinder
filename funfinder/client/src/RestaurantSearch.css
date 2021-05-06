@@ -1,13 +1,31 @@
 .searchHeader{
     padding: 10px;
-    position:relative;
+    position: relative;
+    left: 780px;
+}
+
+.searchHeaderT{
+    padding: 10px;
+    position: relative;
     left: 800px;
 }
 
 .searchHeaderM{
     padding: 10px;
-    position:relative;
+    position: relative;
     left: 608px;
+}
+
+.searchHeaderP{
+    padding: 10px;
+    position: relative;
+    left: 831px;
+}
+
+.searchHeaderE{
+    padding: 10px;
+    position: relative;
+    left: 822px;
 }
 
 .pageContainer {

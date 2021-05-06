@@ -172,7 +172,10 @@ function ParksSearch( {username, setUsername, password,
           setShowWelcomeModal = {setShowWelcomeModal}
         />
 
-        <h1>Search Parks</h1>
+          <div className = "pageContainer">
+          <div className = "searchTitleContainer">
+            <h1 className = "searchHeaderP">Search Parks</h1>
+          </div>
         <Form className = "container" onSubmit = {(event) => getPGeneral(event)}>
           
           <span>Show me Parks in </span>
@@ -184,7 +187,7 @@ function ParksSearch( {username, setUsername, password,
             <option value = "Cleveland">Cleveland</option>
             <option value = "Brooklyn">Brooklyn</option>
           </select>
-          <span> are at least at least </span>
+          <span>that are at least</span>
           <select value = {pAcres}
                   onChange = {(event) => setPAcres(event.target.value)}
                   name = "pacres"
@@ -197,8 +200,8 @@ function ParksSearch( {username, setUsername, password,
             <option value = "100">100</option>
             <option value = "200">200</option>
           </select>
-          <span> acres large. </span>
-          <span> Their mask requirement should be </span>
+          <span>acres large. </span>
+          <span>Their Mask Requirement should be </span>
           <select value = {pMaskReq} 
                   onChange = {(event) => setPMaskReq(event.target.value)}
                   name = "pgenmaskreq"
@@ -207,7 +210,7 @@ function ParksSearch( {username, setUsername, password,
             <option value = "Y">Requires Mask</option>
             <option value = "N">Does not Require Mask</option>
           </select>
-          <span>, and their rating should be at least </span>
+          <span>and their Rating should be at least </span>
           <select value = {pRating} 
                   onChange = {(event) => setPRating(event.target.value)}
                   name = "pgenrating"
@@ -219,14 +222,14 @@ function ParksSearch( {username, setUsername, password,
             <option value = "4.0">4</option>
             <option value = "5.0">5</option>
           </select>
-          <span> out of 5 stars.</span>
+          <span> out of 5 Stars.</span>
           <br/>
           <button type = "submit">Find Parks</button>
         </Form>
 
         <br/>
         <Form className = "container" onSubmit = {(event) => getAllP(event)}>
-          <span>Show me All the Parks!</span>
+          <span>Show me ALL the Parks!</span>
           <br/>
           <button type = "submit">Find Parks</button>
         </Form>
@@ -290,12 +293,12 @@ function ParksSearch( {username, setUsername, password,
         </Form>
         <br/>
         <Form className = "container" onSubmit = {findEventfulP}>
-          <span>Which Parks are hosting events? Show Me a Short Synposis of the Event Information.</span>
+          <span>Which Parks are hosting Events? Provide me with a short Synposis of the Event Information.</span>
           <br/>
           <button type = "submit">Find Parks</button>
         </Form>
-        <div className = "resultsContainer">
-          <h3>Results</h3>
+        <div className = "resultsTitleContainer">
+          <h2 className = "resultsHeader">Results</h2>
           <button 
             onClick = {() => {
               setPResultsGeneral([])
@@ -303,6 +306,7 @@ function ParksSearch( {username, setUsername, password,
             }}>
               Clear Results
           </button>
+        </div>
           <h6>{successfulAdd}</h6>
           {pResultsGeneral.map((park, index) => {
             return (
@@ -341,7 +345,7 @@ function ParksSearch( {username, setUsername, password,
                 <h4>{park.attraction_name}</h4>
                 <ul>
                   <li>Location: {park.street_address} {park.city}, OH {park.zip_code}</li>
-                  <li>Do I Need to Wear a Mask? {park.mask_required}</li>
+                  <li>Do I need to wear a Mask? {park.mask_required}</li>
                   <li>Rating Out of 5: {park.rating}</li>
                 </ul>
               
@@ -349,7 +353,7 @@ function ParksSearch( {username, setUsername, password,
                 <ul>
                   <li>When? {park.opening_date} to {park.closing_date}</li>
                   <li>At what Time? From {park.eventOpening} to {park.eventClosing}</li>
-                  <li>Will this event ever happen again? {park.is_recurring}</li>
+                  <li>Will this Event ever happen again? {park.is_recurring}</li>
                 </ul>
                 <button 
                   key = {index + 1} 

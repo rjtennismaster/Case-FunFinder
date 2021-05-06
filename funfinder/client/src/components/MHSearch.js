@@ -141,7 +141,7 @@ function MHSearch( {username, setUsername, password,
             <h1 className = "searchHeaderM">Search Museums and Historical Sites</h1>
           </div>
           <Form className = "container" onSubmit = {(event) => getMGeneral(event)}>
-            <span>Show me Museums and Historical sites in </span>
+            <span>Show me Museums and Historical Sites in </span>
             <select value = {mCity} 
                     onChange = {(event) => setMCity(event.target.value)}
                     name = "mgencity"
@@ -149,7 +149,7 @@ function MHSearch( {username, setUsername, password,
               <option>Select a City</option>
               <option value = "Cleveland">Cleveland</option>
             </select>
-            <span> that are open between the hours of </span>
+            <span>that are open between the Hours of </span>
             <select value = {mOpening}
                     onChange = {(event) => setMOpening(event.target.value)}
                     name = "mgenoptime"
@@ -213,7 +213,7 @@ function MHSearch( {username, setUsername, password,
               <option value = "2300">23:00</option>
               <option value = "2400">24:00</option>
             </select>
-            <span>. Their mask requirement should be </span>
+            <span>Their Mask Requirement should be </span>
             <select value = {mMaskReq} 
                     onChange = {(event) => setMMaskReq(event.target.value)}
                     name = "mgenmaskreq"
@@ -222,7 +222,7 @@ function MHSearch( {username, setUsername, password,
               <option value = "Y">Requires Mask</option>
               <option value = "N">Does not Require Mask</option>
             </select>
-            <span>, and their rating should be at least </span>
+            <span>and their Rating should be at least </span>
             <select value = {mRating} 
                     onChange = {(event) => setMRating(event.target.value)}
                     name = "mgenrating"
@@ -234,14 +234,14 @@ function MHSearch( {username, setUsername, password,
               <option value = "4.0">4</option>
               <option value = "5.0">5</option>
             </select>
-            <span> out of 5 stars.</span>
+            <span> out of 5 Stars.</span>
             <br/>
             <button type = "submit">Find Museums/Historical Sites</button>
           </Form>
   
           <br/>
           <Form className = "container" onSubmit = {(event) => getAllM(event)}>
-            <span>Show me All the Museums/Historical Sites!</span>
+            <span>Show me ALL the Museums/Historical Sites!</span>
             <br/>
             <button type = "submit">Find Museums/Historical Sites</button>
           </Form>
@@ -277,18 +277,18 @@ function MHSearch( {username, setUsername, password,
           </Form>
           <br/>
           <Form className = "container" onSubmit = {(event) => findMWithFood(event)}>
-            <span>Show me the Museums/Historical Sites that have food courts.</span>
+            <span>Show me the Museums/Historical Sites that have Food Courts.</span>
             <br/>
             <button type = "submit">Find Museums/Historical Sites</button>
           </Form>
           <br/>
           <Form className = "container" onSubmit = {findEventfulM}>
-            <span>Which Museums/Historical Sites are hosting events? Show Me a Short Synposis of the Event Information.</span>
+            <span>Which Museums/Historical Sites are hosting Events? Provide me with a short Synposis of the Event Information.</span>
             <br/>
             <button type = "submit">Find Museums/Historical Sites</button>
           </Form>
-          <div className = "resultsContainer">
-            <h3>Results</h3>
+          <div className = "resultsTitleContainer">
+            <h2 className = "resultsHeader">Results</h2>
             <button 
               onClick = {() => {
                 setMResultsGeneral([])
@@ -296,6 +296,7 @@ function MHSearch( {username, setUsername, password,
               }}>
                 Clear Results
             </button>
+          </div>
             <h6>{successfulAdd}</h6>
             {mResultsGeneral.map((museum, index) => {
               return (
@@ -308,9 +309,9 @@ function MHSearch( {username, setUsername, password,
                     <li>Location: {museum.street_address} {museum.city}, OH {museum.zip_code}</li>
                     <li>Opens At (Military Time): {museum.opening_hour}</li>
                     <li>Closes At (Military Time): {museum.closing_hour}</li>
-                    <li>Is there a food court? {museum.has_food_court}</li>
-                    <li>What is the top exhibit? {museum.top_exhibit}</li>
-                    <li>Do I Need to Wear a Mask? {museum.mask_required}</li>
+                    <li>Is there a Food Court? {museum.has_food_court}</li>
+                    <li>What is the top Exhibit? {museum.top_exhibit}</li>
+                    <li>Do I need to wear a Mask? {museum.mask_required}</li>
                     <li>Rating Out of 5: {museum.rating}</li>
                   </ul>
                   <button 
@@ -334,7 +335,7 @@ function MHSearch( {username, setUsername, password,
                     <li>Location: {museum.street_address} {museum.city}, OH {museum.zip_code}</li>
                     <li>Opens At (Military Time): {museum.opening_hour}</li>
                     <li>Closes At (Military Time): {museum.closing_hour}</li>
-                    <li>Do I Need to Wear a Mask? {museum.mask_required}</li>
+                    <li>Do I need to wear a Mask? {museum.mask_required}</li>
                     <li>Rating Out of 5: {museum.rating}</li>
                   </ul>
                 
@@ -342,7 +343,7 @@ function MHSearch( {username, setUsername, password,
                   <ul>
                     <li>When? {museum.opening_date} to {museum.closing_date}</li>
                     <li>At what Time? From {museum.eventOpening} to {museum.eventClosing}</li>
-                    <li>Will this event ever happen again? {museum.is_recurring}</li>
+                    <li>Will this Event ever happen again? {museum.is_recurring}</li>
                   </ul>
                   <button 
                     key = {index + 1}
@@ -354,7 +355,6 @@ function MHSearch( {username, setUsername, password,
                 </div>
               )
             })}
-          </div>
           </div>
         </div>
         )

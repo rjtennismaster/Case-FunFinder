@@ -248,7 +248,7 @@ function RestaurantSearch( {username, setUsername, password,
               <option value = "4.0">4</option>
               <option value = "5.0">5</option>
             </select>
-            <span> out of 5 stars.</span>
+            <span> out of 5 Stars.</span>
             <br/>
             <button type = "submit">Find Restaurants</button>
           </Form>
@@ -338,7 +338,7 @@ function RestaurantSearch( {username, setUsername, password,
                     <li>Are Vegatarian Options Available? {restaurant.vegetarian_options}</li>
                     <li>Are Vegan Options Available? {restaurant.vegan_options}</li>
                     <li>Capacity Limit: {restaurant.capacity_limit}</li>
-                    <li>Do I Need to Wear a Mask? {restaurant.mask_required}</li>
+                    <li>Do I need to wear a Mask? {restaurant.mask_required}</li>
                     <li>Rating Out of 5: {restaurant.rating}</li>
                   </ul>
                   <button 
@@ -362,7 +362,7 @@ function RestaurantSearch( {username, setUsername, password,
                     <li>Location: {restaurant.street_address} {restaurant.city}, OH {restaurant.zip_code}</li>
                     <li>Opens At (Military Time): {restaurant.opening_hour}</li>
                     <li>Closes At (Military Time): {restaurant.closing_hour}</li>
-                    <li>Do I Need to Wear a Mask? {restaurant.mask_required}</li>
+                    <li>Do I need to wear a Mask? {restaurant.mask_required}</li>
                     <li>Rating Out of 5: {restaurant.rating}</li>
                   </ul>
                 
