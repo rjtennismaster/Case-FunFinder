@@ -339,7 +339,7 @@ function EventSearch( {username, setUsername, password,
             return (
               <div
                 className = "resultCard"
-                key = {index}
+                key = {index + 867}
               >
                 <h4>{e.ename}</h4>
                 <h6>{e.synopsis}</h6>
@@ -356,7 +356,7 @@ function EventSearch( {username, setUsername, password,
                   <li>Do I need to wear a Mask? {e.mask_required}</li>
                 </ul>
                 <button 
-                  key = {index + 1}
+                  key = {index + 123}
                   onClick = {(event) => addToFunFolder(event)}
                   data-funid = {e.fun_id}
                   data-name = {e.attraction_name}

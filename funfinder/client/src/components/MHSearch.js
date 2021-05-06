@@ -315,7 +315,7 @@ function MHSearch( {username, setUsername, password,
                     <li>Rating Out of 5: {museum.rating}</li>
                   </ul>
                   <button 
-                    key = {index}
+                    key = {index + 867}
                     onClick = {(event) => addToFunFolder(event)}
                     data-funid = {museum.fun_id}
                     data-name = {museum.attraction_name}
@@ -328,7 +328,7 @@ function MHSearch( {username, setUsername, password,
               return (
                 <div
                   className = "resultCard"
-                  key = {index}
+                  key = {index + 243}
                 >
                   <h4>{museum.attraction_name}</h4>
                   <ul>

@@ -312,7 +312,7 @@ function ParksSearch( {username, setUsername, password,
             return (
               <div
                 className = "resultCard"
-                key = {index}
+                key = {index + 123}
               >
                 <h4>{park.pname}</h4>
                 <ul>
@@ -327,7 +327,7 @@ function ParksSearch( {username, setUsername, password,
                 </ul>
                 {console.log(park)}
                 <button 
-                  key = {index}
+                  key = {index + 456}
                   onClick = {(event) => addToFunFolder(event)}
                   data-funid = {park.fun_id}
                   data-name = {park.attraction_name}>
@@ -340,7 +340,7 @@ function ParksSearch( {username, setUsername, password,
             return (
               <div
                 className = "resultCard"
-                key = {index}
+                key = {index + 789}
               >
                 <h4>{park.attraction_name}</h4>
                 <ul>
@@ -356,7 +356,7 @@ function ParksSearch( {username, setUsername, password,
                   <li>Will this Event ever happen again? {park.is_recurring}</li>
                 </ul>
                 <button 
-                  key = {index + 1} 
+                  key = {index + 148} 
                   onClick = {(event) => addToFunFolder(event)}
                   data-funid = {park.fun}
                   data-name = {park.attraction_name}>

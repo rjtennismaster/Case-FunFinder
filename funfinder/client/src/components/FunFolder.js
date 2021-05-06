@@ -35,7 +35,7 @@ function FunFolder( {username, setUsername, password,
     }, [])
 
     const removeAttraction = (event) => {
-      const fun = event.currentTarget.dataset.funid
+      const fun = event.currentTarget.dataset.funid1
       Axios.delete(`http://localhost:3003/removeAttraction/${username}/${fun}`)
       .then(() => {
         setFunFolderItems(
@@ -47,17 +47,21 @@ function FunFolder( {username, setUsername, password,
     }
 
     const addToFavorites = (event) => {
+      const savedFunID = event.currentTarget.dataset.funid2
+      console.log("this is the saved fun iD!" + savedFunID)
+      const savedName = event.currentTarget.dataset.name
+
       Axios.post("http://localhost:3003/addToFavorites/", {
         username: username,
-        fun_id: event.currentTarget.dataset.funid,
-        name: event.currentTarget.dataset.name
+        fun_id: savedFunID,
+        name: savedName
       }).then(() => {
         setFavoritesItems([
           ...favoritesItems,
           {
-            fun_id: event.currentTarget.dataset.funid,
+            fun_id: savedFunID,
             cwru_id: username,
-            attraction_name: event.currentTarget.dataset.name
+            attraction_name: savedName
           }
         ])
       })
@@ -110,15 +114,15 @@ function FunFolder( {username, setUsername, password,
                   
                     <button
                       className = "folderRemoveB" 
-                      key = {index * 123} 
-                      data-funid = {item.fun_id} 
+                      key = {index + 123} 
+                      data-funid1 = {item.fun_id} 
                       onClick = {removeAttraction}>
                       Remove from Fun Folder
                     </button>
                     <button 
                       className = "folderAddB"
-                      key = {index * 456} 
-                      data-funid = {item.fun_id}
+                      key = {index + 456} 
+                      data-funid2 = {item.fun_id}
                       data-name = {item.attraction_name} 
                       onClick = {addToFavorites}>
                       Add to Favorites
@@ -135,7 +139,7 @@ function FunFolder( {username, setUsername, password,
             <div className = "favoritesContent">
             {favoritesItems.map((item, index) => {
                 return (
-                <div key = {index * 789} className = "favoritesItem">
+                <div key = {index + 789} className = "favoritesItem">
                   <h4>{item.attraction_name}</h4>
                   <ul>
                       <li>Type: {item.attraction_type}</li>
@@ -145,7 +149,7 @@ function FunFolder( {username, setUsername, password,
                       <li>Do I need a mask? {item.mask_required}</li>
                       <li>Rating out of 5: {item.rating}</li>
                   </ul>  
-                  <button key = {index * 147}
+                  <button key = {index + 147}
                           className = "favRemoveB"
                           data-funid = {item.fun_id}
                           onClick = {removeFromFavorites}

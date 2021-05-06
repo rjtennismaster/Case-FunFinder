@@ -342,7 +342,7 @@ function RestaurantSearch( {username, setUsername, password,
                     <li>Rating Out of 5: {restaurant.rating}</li>
                   </ul>
                   <button 
-                    key = {index}
+                    key = {index + 123}
                     onClick = {(event) => addToFunFolder(event)}
                     data-funid = {restaurant.fun_id}
                     data-name = {restaurant.attraction_name}
@@ -355,7 +355,7 @@ function RestaurantSearch( {username, setUsername, password,
               return (
                 <div
                   className = "resultCard"
-                  key = {index}
+                  key = {index + 126}
                 >
                   <h4>{restaurant.attraction_name}</h4>
                   <ul>
@@ -373,7 +373,7 @@ function RestaurantSearch( {username, setUsername, password,
                     <li>Will this Event ever happen again? {restaurant.is_recurring}</li>
                   </ul>
                   <button 
-                    key = {index + 1}
+                    key = {index + 456}
                     onClick = {(event) => addToFunFolder(event)}
                     data-funid = {restaurant.fun}
                     data-name = {restaurant.attraction_name}>

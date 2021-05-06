@@ -267,7 +267,7 @@ function TheatreSearch( {username, setUsername, password,
             return (
               <div
                 className = "resultCard"
-                key = {index}
+                key = {index + 854}
               >
                 <h4>{theatre.tname}</h4>
                 <ul>
@@ -279,7 +279,7 @@ function TheatreSearch( {username, setUsername, password,
                   <li>Rating Out of 5: {theatre.rating}</li>
                 </ul>
                 <button 
-                  key = {index}
+                  key = {index + 233}
                   onClick = {(event) => addToFunFolder(event)}
                   data-funid = {theatre.fun_id}
                   data-name = {theatre.attraction_name}>
@@ -292,7 +292,7 @@ function TheatreSearch( {username, setUsername, password,
             return (
               <div
                 className = "resultCard"
-                key = {index}
+                key = {index + 856}
               >
                 <h4>{theatre.attraction_name}</h4>
                 <ul>
@@ -308,7 +308,7 @@ function TheatreSearch( {username, setUsername, password,
                   <li>Will this Event ever happen again? {theatre.is_recurring}</li>
                 </ul>
                 <button 
-                  key = {index + 1} 
+                  key = {index + 247} 
                   onClick = {(event) => addToFunFolder(event)}
                   data-funid = {theatre.fun}
                   data-name = {theatre.attraction_name}>
