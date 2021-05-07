@@ -115,7 +115,7 @@ function MHSearch( {username, setUsername, password,
           setSuccessfulAdd(response.data.message)
           setTimeout(() => {
             setSuccessfulAdd("")
-          }, 2000)
+          }, 5000)
         })
       }
   

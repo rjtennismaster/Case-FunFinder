@@ -92,7 +92,7 @@ app.post('/addToFavorites', (req, res) => {
                 res.send({message: "You cannot add any more attractions to your favorites."})
                 console.log(err)
             } else {
-                res.send(result)
+                res.send({message: "Added to Favorites!"})
             }
         }
     )

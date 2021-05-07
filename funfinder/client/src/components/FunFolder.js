@@ -10,6 +10,7 @@ function FunFolder( {username, setUsername, password,
 
     const [funFolderItems, setFunFolderItems] = useState([])
     const [favoritesItems, setFavoritesItems] = useState([])
+    const [successfulAdd, setSuccessfulAdd] = useState("")
     
 
     useEffect(() => {
@@ -55,7 +56,7 @@ function FunFolder( {username, setUsername, password,
         username: username,
         fun_id: savedFunID,
         name: savedName
-      }).then(() => {
+      }).then((response) => {
         setFavoritesItems([
           ...favoritesItems,
           {
@@ -64,6 +65,10 @@ function FunFolder( {username, setUsername, password,
             attraction_name: savedName
           }
         ])
+        setSuccessfulAdd(response.data.message)
+          setTimeout(() => {
+            setSuccessfulAdd("")
+          }, 5000)
       })
     }
 
@@ -137,6 +142,7 @@ function FunFolder( {username, setUsername, password,
               <h1>Favorites</h1>
             </div>
             <div className = "favoritesContent">
+            <h6>{successfulAdd}</h6>
             {favoritesItems.map((item, index) => {
                 return (
                 <div key = {index + 789} className = "favoritesItem">
