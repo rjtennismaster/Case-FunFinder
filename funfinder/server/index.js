@@ -100,14 +100,13 @@ app.post('/addToFavorites', (req, res) => {
 
 app.get('/getRestaurantsGeneral', (req, res) => {
     const city = req.query.city
-    const openingHour = req.query.openingHour
-    const closingHour = req.query.closingHour
+    const open = req.query.open
     const maskRequired = req.query.maskRequired
     const rating = req.query.rating
 
     database.query(
-        "SELECT * FROM restaurants R NATURAL JOIN attractions A WHERE A.city = ? AND A.opening_hour >= ? AND A.closing_hour <= ? AND A.mask_required = ? AND A.rating >= ?",
-        [city, openingHour, closingHour, maskRequired, rating],
+        "SELECT * FROM restaurants R NATURAL JOIN attractions A WHERE A.city = ? AND A.opening_hour <= ? AND ? <= A.closing_hour AND A.mask_required = ? AND A.rating >= ?",
+        [city, open, open, maskRequired, rating],
         (err, result) => {
             if (err) {
                 console.log(err)
@@ -341,14 +340,13 @@ app.get('/findEventfulTheatres', (req, res) => {
 
 app.get('/getMGeneral', (req, res) => {
     const city = req.query.city
-    const openingHour = req.query.openingHour
-    const closingHour = req.query.closingHour
+    const open = req.query.open
     const maskRequired = req.query.maskRequired
     const rating = req.query.rating
 
     database.query(
-        "SELECT * FROM museums_historical M NATURAL JOIN attractions A WHERE A.city = ? AND A.opening_hour >= ? AND A.closing_hour <= ? AND A.mask_required = ? AND A.rating >= ?",
-        [city, openingHour, closingHour, maskRequired, rating],
+        "SELECT * FROM museums_historical M NATURAL JOIN attractions A WHERE A.city = ? AND A.opening_hour <= ? AND ? <= A.closing_hour AND A.mask_required = ? AND A.rating >= ?",
+        [city, open, open, maskRequired, rating],
         (err, result) => {
             if (err) {
                 console.log(err)
@@ -575,14 +573,13 @@ app.get('/findEventfulP', (req, res) => {
 
 app.get('/getEGeneral', (req, res) => {
     const city = req.query.city
-    const openingHour = req.query.openingHour
-    const closingHour = req.query.closingHour
+    const open = req.query.open
     const maskRequired = req.query.maskRequired
     const isRecurring = req.query.isRecurring
 
     database.query(
-        "SELECT * FROM events E NATURAL JOIN attractions A WHERE A.city = ? AND A.opening_hour >= ? AND A.closing_hour <= ? AND A.mask_required = ? AND E.is_recurring = ?",
-        [city, openingHour, closingHour, maskRequired, isRecurring],
+        "SELECT * FROM events E NATURAL JOIN attractions A WHERE A.city = ? AND A.opening_hour <= ? AND ? <= A.closing_hour AND A.mask_required = ? AND E.is_recurring = ?",
+        [city, open, open, maskRequired, isRecurring],
         (err, result) => {
             if (err) {
                 console.log(err)

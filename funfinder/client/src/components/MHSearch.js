@@ -13,8 +13,7 @@ function MHSearch( {username, setUsername, password,
       //state for search parameters
       const [mCity, setMCity] = useState("")
       const [mZipcode, setMZipCode] = useState("")
-      const [mOpening, setMOpening] = useState("")
-      const [mClosing, setMClosing] = useState("")
+      const [mOpen, setMOpen] = useState("")
       const [mMaskReq, setMMaskReq] = useState("")
       const [mName, setMName] = useState("")
       const [mRating, setMRating] = useState("")
@@ -29,8 +28,7 @@ function MHSearch( {username, setUsername, password,
         Axios.get("http://localhost:3003/getMGeneral", {
               params: {
                   city: mCity,
-                  openingHour: parseInt(mOpening),
-                  closingHour: parseInt(mClosing),
+                  open: parseInt(mOpen),
                   maskRequired: mMaskReq,
                   rating: parseFloat(mRating)
               }
@@ -149,44 +147,12 @@ function MHSearch( {username, setUsername, password,
               <option>Select a City</option>
               <option value = "Cleveland">Cleveland</option>
             </select>
-            <span>that are open between the Hours of </span>
-            <select value = {mOpening}
-                    onChange = {(event) => setMOpening(event.target.value)}
+            <span>that are open at</span>
+            <select value = {mOpen}
+                    onChange = {(event) => setMOpen(event.target.value)}
                     name = "mgenoptime"
             >
               <option>Select an Opening Time</option>
-              <option value = "0000">00:00</option>
-              <option value = "0100">01:00</option>
-              <option value = "0200">02:00</option>
-              <option value = "0300">03:00</option>
-              <option value = "0400">04:00</option>
-              <option value = "0500">05:00</option>
-              <option value = "0600">06:00</option>
-              <option value = "0700">07:00</option>
-              <option value = "0800">08:00</option>
-              <option value = "0900">09:00</option>
-              <option value = "1000">10:00</option>
-              <option value = "1100">11:00</option>
-              <option value = "1200">12:00</option>
-              <option value = "1300">13:00</option>
-              <option value = "1400">14:00</option>
-              <option value = "1500">15:00</option>
-              <option value = "1600">16:00</option>
-              <option value = "1700">17:00</option>
-              <option value = "1800">18:00</option>
-              <option value = "1900">19:00</option>
-              <option value = "2000">20:00</option>
-              <option value = "2100">21:00</option>
-              <option value = "2200">22:00</option>
-              <option value = "2300">23:00</option>
-              <option value = "2400">24:00</option>
-            </select>
-            <span> and </span>
-            <select value = {mClosing}
-                    onChange = {(event) => setMClosing(event.target.value)}
-                    name = "mgenclosetime"
-            >
-              <option>Select a Closing Time</option>
               <option value = "0000">00:00</option>
               <option value = "0100">01:00</option>
               <option value = "0200">02:00</option>
@@ -222,7 +188,7 @@ function MHSearch( {username, setUsername, password,
               <option value = "Y">Requires Mask</option>
               <option value = "N">Does not Require Mask</option>
             </select>
-            <span>and their Rating should be at least </span>
+            <span>and their Rating should be at least</span>
             <select value = {mRating} 
                     onChange = {(event) => setMRating(event.target.value)}
                     name = "mgenrating"

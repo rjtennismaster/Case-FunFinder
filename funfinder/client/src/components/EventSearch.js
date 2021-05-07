@@ -14,8 +14,7 @@ function EventSearch( {username, setUsername, password,
     //state for search parameters
     const [eCity, setECity] = useState("")
     const [eZipcode, setEZipCode] = useState("")
-    const [eOpening, setEOpening] = useState("")
-    const [eClosing, setEClosing] = useState("")
+    const [eOpen, setEOpen] = useState("")
     const [eMaskReq, setEMaskReq] = useState("")
     const [eName, setEName] = useState("")
     const [isRecurring, setIsRecurring] = useState("")
@@ -29,8 +28,7 @@ function EventSearch( {username, setUsername, password,
       Axios.get("http://localhost:3003/getEGeneral", {
             params: {
                 city: eCity,
-                openingHour: parseInt(eOpening),
-                closingHour: parseInt(eClosing),
+                open: parseInt(eOpen),
                 maskRequired: eMaskReq,
                 isRecurring: isRecurring
             }
@@ -174,44 +172,12 @@ function EventSearch( {username, setUsername, password,
             <option value = "Cleveland">Cleveland</option>
             <option value = "Brooklyn">Brooklyn</option>
           </select>
-          <span>that take place between the Hours of </span>
-          <select value = {eOpening}
-                  onChange = {(event) => setEOpening(event.target.value)}
+          <span>that happen at</span>
+          <select value = {eOpen}
+                  onChange = {(event) => setEOpen(event.target.value)}
                   name = "egenoptime"
           >
-            <option>Select an Opening Time</option>
-            <option value = "0000">00:00</option>
-            <option value = "0100">01:00</option>
-            <option value = "0200">02:00</option>
-            <option value = "0300">03:00</option>
-            <option value = "0400">04:00</option>
-            <option value = "0500">05:00</option>
-            <option value = "0600">06:00</option>
-            <option value = "0700">07:00</option>
-            <option value = "0800">08:00</option>
-            <option value = "0900">09:00</option>
-            <option value = "1000">10:00</option>
-            <option value = "1100">11:00</option>
-            <option value = "1200">12:00</option>
-            <option value = "1300">13:00</option>
-            <option value = "1400">14:00</option>
-            <option value = "1500">15:00</option>
-            <option value = "1600">16:00</option>
-            <option value = "1700">17:00</option>
-            <option value = "1800">18:00</option>
-            <option value = "1900">19:00</option>
-            <option value = "2000">20:00</option>
-            <option value = "2100">21:00</option>
-            <option value = "2200">22:00</option>
-            <option value = "2300">23:00</option>
-            <option value = "2400">24:00</option>
-          </select>
-          <span> and </span>
-          <select value = {eClosing}
-                  onChange = {(event) => setEClosing(event.target.value)}
-                  name = "egenclosetime"
-          >
-            <option>Select a Closing Time</option>
+            <option>Select a Time</option>
             <option value = "0000">00:00</option>
             <option value = "0100">01:00</option>
             <option value = "0200">02:00</option>
