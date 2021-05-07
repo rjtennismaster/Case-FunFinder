@@ -277,6 +277,7 @@ function MHSearch( {username, setUsername, password,
                     <li>Closes At (Military Time): {museum.closing_hour}</li>
                     <li>Is there a Food Court? {museum.has_food_court}</li>
                     <li>What is the top Exhibit? {museum.top_exhibit}</li>
+                    <li>When was it Founded? {museum.founding_date}</li>
                     <li>Do I need to wear a Mask? {museum.mask_required}</li>
                     <li>Rating Out of 5: {museum.rating}</li>
                   </ul>

@@ -171,6 +171,7 @@ function EventSearch( {username, setUsername, password,
             <option>Select a City</option>
             <option value = "Cleveland">Cleveland</option>
             <option value = "Brooklyn">Brooklyn</option>
+            <option value = "Ohio City">Ohio City</option>
           </select>
           <span>that happen at</span>
           <select value = {eOpen}

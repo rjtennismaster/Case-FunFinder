@@ -18,7 +18,8 @@
 .folderTitle {
     display: flex;
     justify-content: center;
-    background-color: #1E90FF;
+    background-color: #0a304e;
+    color: white;
     margin: -25px;
     margin-bottom: 15px;
     padding: 5px;
@@ -27,21 +28,22 @@
 .favoritesTitle {
     display: flex;
     justify-content: center;
-    background-color: #1E90FF;
+    background-color: #0a304e;
+    color: white;
     margin: -25px;
     margin-bottom: 15px;
     padding: 5px;
 }
 
 .folderContent {
-    background-color: slategrey;
+    background-color: #626262;
     margin: -25px;
     padding: 20px;
     height: 99.5%;
 }
 
 .favoritesContent {
-    background-color: slategrey;
+    background-color: #626262;
     margin: -25px;
     padding: 20px;
     height: 99.5%;
@@ -52,7 +54,7 @@
     height: auto;
     border: 4px solid black;
     padding: 10px;
-    background-color: #f0ec17;
+    background-color: #BABABA;
     border-radius: 10px;
 }
 

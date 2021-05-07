@@ -160,6 +160,7 @@ function RestaurantSearch( {username, setUsername, password,
             >
               <option>Select a City</option>
               <option value = "Cleveland">Cleveland</option>
+              <option value = "Ohio City">Ohio City</option>
             </select>
             <span> that are open at </span>
             <select value = {rOpen}
