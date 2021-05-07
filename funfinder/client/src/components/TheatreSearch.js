@@ -275,7 +275,7 @@ function TheatreSearch( {username, setUsername, password,
                   <li>Location: {theatre.street_address} {theatre.city}, OH {theatre.zip_code}</li>
                   <li>Capacity Limit: {theatre.number_seats}</li>
                   <li>Do I Need to Wear a Mask? {theatre.mask_required}</li>
-                  <li>Will pPopcorn be Sold? {theatre.sells_popcorn}</li>
+                  <li>Will Popcorn be Sold? {theatre.sells_popcorn}</li>
                   <li>Top Program showing: {theatre.top_program_showing}</li>
                   <li>Rating Out of 5: {theatre.rating}</li>
                 </ul>
