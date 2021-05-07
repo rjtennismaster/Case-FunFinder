@@ -69,7 +69,7 @@ app.post('/addToFunFolder', (req, res) => {
         [cwruId, funId, name],
         (err, result) => {
             if (err) {
-                res.send({message: "You cannot add any more attractions to your fun folder."})
+                res.send({message: "You cannot add this to your Fun Folder."})
                 console.log(err)
             } else {
                 res.send({message: "Added to Fun Folder!"})
@@ -89,7 +89,7 @@ app.post('/addToFavorites', (req, res) => {
         [funId, cwruId, name],
         (err, result) => {
             if (err) {
-                res.send({message: "You cannot add any more attractions to your favorites."})
+                res.send({message: "You cannot add this to your Favorites.", error: err})
                 console.log(err)
             } else {
                 res.send({message: "Added to Favorites!"})

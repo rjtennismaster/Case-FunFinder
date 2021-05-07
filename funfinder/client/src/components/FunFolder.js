@@ -57,19 +57,26 @@ function FunFolder( {username, setUsername, password,
         fun_id: savedFunID,
         name: savedName
       }).then((response) => {
-        setFavoritesItems([
-          ...favoritesItems,
-          {
-            fun_id: savedFunID,
-            cwru_id: username,
-            attraction_name: savedName
-          }
-        ])
-        setSuccessfulAdd(response.data.message)
+        if (response.error) {
+          setSuccessfulAdd(response.data.message)
           setTimeout(() => {
             setSuccessfulAdd("")
           }, 5000)
-      })
+        } else {
+            setFavoritesItems([
+              ...favoritesItems,
+              {
+                fun_id: savedFunID,
+                cwru_id: username,
+                attraction_name: savedName
+              }
+            ])
+            setSuccessfulAdd(response.data.message)
+              setTimeout(() => {
+                setSuccessfulAdd("")
+              }, 5000)
+          }
+        })
     }
 
     const removeFromFavorites = (event) => {
