@@ -152,7 +152,7 @@ function MHSearch( {username, setUsername, password,
                     onChange = {(event) => setMOpen(event.target.value)}
                     name = "mgenoptime"
             >
-              <option>Select an Opening Time</option>
+              <option>Select a Time</option>
               <option value = "0000">00:00</option>
               <option value = "0100">01:00</option>
               <option value = "0200">02:00</option>
